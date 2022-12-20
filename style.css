@@ -1,0 +1,115 @@
+:root {
+  --primary-color: #0066cc;
+  --secondary-color: #ffffff;
+  --text-color: #333333;
+  --link-color: #0066cc;
+  --hover-color: #cccccc;
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+h1, h2, h3 {
+  color: var(--primary-color);
+  font-size: 24px;
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin: 20px 0 10px;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--hover-color);
+}
+
+header {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  padding: 20px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  padding: 20px;
+}
+
+nav a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: var(--hover-color);
+}
+
+main {
+  padding: 20px;
+  outline: 1px solid var(--primary-color);
+}
+
+footer {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  padding: 20px;
+  text-align: center;
+  opacity: 0.8;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Use flexbox for layout */
+.float-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.float-left {
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Media Queries */
+
+/* Mobile-first approach: define default styles first, then override for larger screens */
+@media screen and (min-width: 768px) {
+  /* Add responsive styles for screens larger than 768px here */
+}
+
+/* Organize media queries by breakpoint */
+@media screen and (min-width: 992px) {
+  /* Add responsive styles for screens larger than 992px here */
+}
+
+@media screen and (min-width: 1200px) {
+  /* Add responsive styles for screens larger than 1200px here */
+}
