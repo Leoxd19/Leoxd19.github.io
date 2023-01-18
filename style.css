@@ -1,14 +1,14 @@
 :root {
-  --primary-color: #0066cc;
+  --primary-color: #000000;
   --secondary-color: #ffffff;
-  --text-color: #333333;
-  --link-color: #0066cc;
-  --hover-color: #cccccc;
+  --text-color: #ffffff;
+  --link-color: #3486e2;
+  --hover-color: #1af806;
 }
 
 body {
   font-family: "Helvetica Neue", Arial, sans-serif;
-  background-color: #f4f4f4;
+  background-color: #424242;
   color: var(--text-color);
   font-size: 16px;
   font-weight: 400;
@@ -46,7 +46,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--primary-color);
+  background-color: var(--primary-color);                                                                       
   color: var(--secondary-color);
   padding: 20px;
 }
@@ -88,14 +88,26 @@ footer {
 }
 
 /* Use flexbox for layout */
-.float-right {
+.header-image {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  position: relative;
 }
+
+
+#logo {
+position: absolute;
+top: 0px;
+left: 0px;
+width: 250px;
+z-index: 1;
+}
+
 
 .float-left {
   display: flex;
   justify-content: flex-start;
+      position: relative;
 }
 
 /* Media Queries */
