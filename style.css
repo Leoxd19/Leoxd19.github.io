@@ -76,9 +76,21 @@ footer {
   opacity: 0.8;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
+.project-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.align-left {
+  text-align: left;
+}
+.align-right {
+  text-align: right;
+}
+
+.img-responsive {
+  max-width: 100%;
+  height: auto;
 }
 
 .clearfix:after {
@@ -87,23 +99,41 @@ footer {
   clear: both;
 }
 
-/* Use flexbox for layout */
 .header-image {
+  position: relative;
   display: flex;
   justify-content: flex-start;
-  position: relative;
 }
 
- /* Leo Futuristics Leopard logo, top left */
+
+/* Adding positioning and margin properties to the scroll-down-arrow class */
+.scroll-down-arrow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 20px;
+  z-index: 1;
+  width: 200px;
+  height: 200px;
+}
+
+/* Leopard Leo Futuristic Logo */
 
 #logo {
 position: absolute;
-top: 0px;
-left: 0px;
-width: 275px;
+top: -60px;
+left: -60px;
+width: 450px;
 z-index: 1;
 }
 
+#video-container {
+  display: flex;
+}
+
+#quote {
+  margin-left: 20px; /* adjust as needed */
+}
 
 .float-left {
   display: flex;
