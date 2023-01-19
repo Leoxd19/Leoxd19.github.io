@@ -1,6 +1,5 @@
-# LeoFuturistics.com
+# LEO FUTURISTISC
 
-Personal website...
 
 
 
