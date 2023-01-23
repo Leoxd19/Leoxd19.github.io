@@ -1,6 +1,6 @@
-# LEO Futuristics
+# Leo Futuristics
 
-My personal website...
+
 
 
 
