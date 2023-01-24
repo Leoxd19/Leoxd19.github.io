@@ -105,6 +105,21 @@ footer {
   justify-content: flex-start;
 }
 
+#bot-info h1 {
+    color: #f92672;
+}
+
+#bot-info h2 {
+    color: #66d9ef;
+}
+
+#bot-info code {
+    background-color: #f8f8f8;
+    color: #f92672;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
 
 /* Adding positioning and margin properties to the scroll-down-arrow class */
 .scroll-down-arrow {
