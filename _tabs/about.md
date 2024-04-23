@@ -12,3 +12,8 @@ order: 4
  In addition to my technical pursuits, I find inspiration and draw influence from the arts, literature and philosophy. Some of my favorite thinkers include Christopher Hitchens, Sam Harris, Richard Dawkins, Sir Martin Rees, Sean Carroll, George Orwell, Spinoza, Marcus Aurelius and polymaths like Michaelangelo & Leonardo da Vinci.
 
  Among my favorite artworks are 'Nighthawks' by Edward Hopper and 'The Night Before the Exam' by Leonid Osipovich Pasternak. These pieces resonate with me deeply, reflecting my appreciation for the intersection of creativity, intellect and skill.
+
+
+![Night before the Exam](/images/Nightbeforetheexam.png)
+
+![Nighthawks](/images/Nighthawks.jpg)
