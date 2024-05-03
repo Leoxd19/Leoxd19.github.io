@@ -5,7 +5,7 @@ order: 4
 ---
 > Hi there 🏄
 
- As an avid computer science student, I'm driven by a fervent passion for programming and technology.
+ As an avid computer science student, I'm driven by my passion for programming and technology.
 
  My journey is fueled by a relentless curiosity to explore cutting-edge tech and contribute to innovative solutions. I'm eager to apply my skills and knowledge to make a meaningful impact in our ever-evolving world.
 
