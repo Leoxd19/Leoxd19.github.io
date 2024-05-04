@@ -3,7 +3,7 @@
 icon: fas fa-info-circle
 order: 4
 ---
-> Hi there 🏄
+> Hi there! 🏄
 
  As an avid computer science student, I'm driven by my passion for programming and technology.
 
