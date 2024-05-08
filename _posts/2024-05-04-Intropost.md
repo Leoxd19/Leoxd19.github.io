@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Leo Labs
+title: Leo Labs 💻
 date: 2024-05-04 16:37
 category: Introduction
 author: Leo
