@@ -13,7 +13,7 @@ order: 4
  
  Some of my favorite thinkers include; Christopher Hitchens, Sam Harris, Richard Dawkins, Sir Martin Rees, Sean Carroll, George Orwell, Spinoza, Voltaire, Marcus Aurelius, Leonardo Da Vinci & Michelangelo.
 
- Among my favorite artworks are 'Nighthawks' by Edward Hopper and 'The Night Before the Exam' by Leonid Osipovich Pasternak. 
+ Among my favorite artworks are 'Nighthawks' by Edward Hopper, 'The Night Before the Exam' by Leonid Osipovich Pasternak & 'The Fallen Angel' by Alexandre Cabanel. 
  
  These pieces resonate with me deeply, reflecting my appreciation for the intersection of creativity and skill.
 
@@ -23,3 +23,6 @@ order: 4
 
 ![Night before the Exam](/images/Nightbeforetheexam.png)
 >The Night Before The Exam
+
+![The Fallen Angel](/images/TheFallenAngel.jpg)
+>The Fallen Angel
