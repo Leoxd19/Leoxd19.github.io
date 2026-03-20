@@ -1,0 +1,53 @@
+---
+import "../styles/global.css";
+
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <main class="container">
+      <div class="hero">
+        <slot />
+      </div>
+    </main>
+  </body>
+</html>
+
+<style>
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 24px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero {
+    transform: translateY(-10vh);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+</style>
+
