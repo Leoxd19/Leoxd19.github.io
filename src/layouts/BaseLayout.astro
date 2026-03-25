@@ -6,6 +6,11 @@ export interface Props {
 }
 
 const { title } = Astro.props;
+
+const rawPath = Astro.url.pathname;
+const normalizedPath =
+  rawPath.replace(/\/+$/, "") || "/";
+const isHome = normalizedPath === "/";
 ---
 
 <!doctype html>
@@ -24,6 +29,20 @@ const { title } = Astro.props;
   </head>
 
   <body>
+    <nav class="site-nav" aria-label="Primary">
+      <ul class="site-nav-list">
+        <li>
+          <a
+            href="/"
+            class:list={["site-nav-link", { "is-active": isHome }]}
+            aria-current={isHome ? "page" : undefined}
+          >
+            home
+          </a>
+        </li>
+      </ul>
+    </nav>
+
     <main class="container">
       <div class="hero">
         <slot />
@@ -33,6 +52,41 @@ const { title } = Astro.props;
 </html>
 
 <style>
+  .site-nav {
+    position: fixed;
+    left: 1.5rem;
+    top: 2.5rem;
+    z-index: 50;
+    margin: 0;
+    padding: 0;
+  }
+
+  .site-nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+  }
+
+  .site-nav-link {
+    font-family: inherit;
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    text-transform: lowercase;
+    text-decoration: none;
+    color: inherit;
+    opacity: 0.4;
+    transition: opacity 0.15s ease;
+  }
+
+  .site-nav-link:hover,
+  .site-nav-link.is-active {
+    opacity: 1;
+  }
+
   .container {
     max-width: 680px;
     margin: 0 auto;
