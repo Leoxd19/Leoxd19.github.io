@@ -48,6 +48,7 @@ h1 {
 
 p {
   font-weight: 300;
+  font-size: 1.2rem;
 }
 
 /* Hero centering + layout (keeps the page extremely minimal) */
@@ -66,3 +67,18 @@ main.container .hero {
   text-align: center !important;
 }
 
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.logo {
+  display: inline !important;
+  vertical-align: middle;
+  width: auto;
+  background: none;
+  border: none;
+}
