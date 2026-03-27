@@ -82,3 +82,17 @@ main.container .hero {
   background: none;
   border: none;
 }
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  p {
+    font-size: 0.75rem;
+  }
+
+  body {
+    overflow: hidden;
+  }
+}
