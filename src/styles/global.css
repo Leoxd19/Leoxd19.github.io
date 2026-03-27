@@ -81,6 +81,7 @@ main.container .hero {
   width: auto;
   background: none;
   border: none;
+  filter: invert(1);
 }
 
 @media (max-width: 480px) {
