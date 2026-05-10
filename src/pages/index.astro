@@ -5,7 +5,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 <BaseLayout title="Leo Gardberg">
   <div class="heroContent">
     <h1 class="name">Leo Gardberg</h1>
-    <p style="line-height: 1;">currently @ <a href="https://furhatrobotics.com" target="_blank" style="display:inline;line-height:0;font-size:0;"><img src="/furhatlogo.png" alt="Furhat Robotics" class="logo" /></a> working with social robots</p>
+    <p>currently @ <a href="https://furhatrobotics.com" target="_blank" class="logoLink"><img src="/furhatlogo.png" alt="Furhat Robotics" class="logo" /></a> working with social robots</p>
   </div>
 </BaseLayout>
 
@@ -15,35 +15,27 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-	    text-align: center;
+    gap: 1.5rem;
+    text-align: center;
   }
 
   .name {
     font-size: 1.8rem;
     font-weight: 300;
     letter-spacing: 0.05em;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .logoLink {
+    line-height: 0;
   }
 
   .logo {
+    display: inline-block;
+    vertical-align: middle;
     width: 140px;
     height: auto;
     opacity: 0.9;
-    margin-bottom: 0.6rem;
-  }
-
-  .logoGroup {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .date {
-    font-size: 0.7rem;
-    font-weight: 300;
-    opacity: 0.55;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    filter: invert(1);
   }
 </style>
