@@ -7,6 +7,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <h1 class="name">Leo Gardberg</h1>
     <p>currently @ <a href="https://furhatrobotics.com" target="_blank" class="logoLink"><img src="/furhatlogo.png" alt="Furhat Robotics" class="logo" /></a> — working with social robots</p>
     <dotlottie-wc src="/animation.lottie" autoplay loop class="mascot"></dotlottie-wc>
+    <span class="soon">// more soon</span>
   </div>
 </BaseLayout>
 
@@ -44,9 +45,32 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     aspect-ratio: 19 / 10;
   }
 
+  .soon {
+    font-size: 0.8rem;
+    color: #e8e8e8;
+    opacity: 0.25;
+    letter-spacing: 0.08em;
+  }
+
   @media (max-width: 480px) {
+    .heroContent {
+      gap: 1rem;
+    }
+
+    .name {
+      font-size: 1.2rem;
+    }
+
     .logo {
-      width: 110px;
+      width: 90px;
+    }
+
+    .mascot {
+      width: min(300px, 80vw);
+    }
+
+    .soon {
+      font-size: 0.7rem;
     }
   }
 </style>
