@@ -5,7 +5,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 <BaseLayout title="Leo Gardberg">
   <div class="heroContent">
     <h1 class="name">Leo Gardberg</h1>
-    <p>currently @ <a href="https://furhatrobotics.com" target="_blank" class="logoLink"><img src="/furhatlogo.png" alt="Furhat Robotics" class="logo" /></a> working with social robots</p>
+    <p>currently @ <a href="https://furhatrobotics.com" target="_blank" class="logoLink"><img src="/furhatlogo.png" alt="Furhat Robotics" class="logo" /></a> — working with social robots</p>
+    <dotlottie-wc src="/animation.lottie" autoplay loop class="mascot"></dotlottie-wc>
   </div>
 </BaseLayout>
 
@@ -21,9 +22,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
   .name {
     font-size: 1.8rem;
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: 0.05em;
-    margin-bottom: 1.5rem;
   }
 
   .logoLink {
@@ -37,5 +37,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     height: auto;
     opacity: 0.9;
     filter: invert(1);
+  }
+
+  .mascot {
+    width: min(380px, 90vw);
+    aspect-ratio: 19 / 10;
+  }
+
+  @media (max-width: 480px) {
+    .logo {
+      width: 110px;
+    }
   }
 </style>
