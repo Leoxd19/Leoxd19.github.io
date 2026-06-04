@@ -2,31 +2,65 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Leo Gardberg">
+<BaseLayout title="Leo Gardberg — working with social robots">
   <div class="heroContent">
     <h1 class="name">Leo Gardberg</h1>
     <p>currently @ <a href="https://furhatrobotics.com" target="_blank" class="logoLink"><img src="/furhatlogo.png" alt="Furhat Robotics" class="logo" /></a> — working with social robots</p>
     <figure class="photoFrame">
       <img src="/leo1.jpg" alt="Leo with Furhat robots" class="photo" />
     </figure>
-    <section class="builtSection" aria-label="Shipped">
-      <h2 class="sectionHeading">// shipped</h2>
+    <section class="builtSection" aria-label="Project">
+      <svg class="pointerArrow" viewBox="0 0 24 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="12" y1="3" x2="12" y2="24"/>
+        <polyline points="6 19 12 25 18 19"/>
+      </svg>
 
       <article class="project">
         <img src="/misty-connect-icon.png" alt="" class="appIcon" />
         <h3 class="projectTitle">Misty Connect</h3>
-        <span class="projectMeta">iOS · Flutter · BLE</span>
+        <div class="projectMeta">
+          <span class="techTag techFlutter">Flutter</span>
+          <span class="techDot">·</span>
+          <span class="techTag techDart">Dart</span>
+          <span class="techDot">·</span>
+          <span class="techTag techBle">BLE</span>
+        </div>
         <p class="projectBlurb">
-          A Bluetooth provisioning tool for users and developers of the Misty II robot. Discovers nearby robots over BLE, exchanges binary frames across a custom GATT service to hand off Wi-Fi credentials, and returns the assigned IP. Pure-Dart protocol layer, fully unit-tested. Previously seen robots are cached for one-tap reconnects.
+          Bluetooth Wi-Fi provisioning for the Misty II robot.
         </p>
+        <details class="expand">
+          <summary class="expandToggle">
+            <span class="expandText" aria-hidden="true"></span>
+            <svg class="expandChevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+            <span class="srOnly">Toggle technical details</span>
+          </summary>
+          <ul class="expandBody">
+            <li>Discovers nearby Misty II robots via BLE advertisements.</li>
+            <li>Custom GATT service to hand off Wi-Fi credentials and read back the assigned IP.</li>
+            <li>Pure-Dart protocol layer, fully unit-tested.</li>
+            <li>Previously seen robots cached for one-tap reconnects.</li>
+          </ul>
+        </details>
         <ul class="platformList">
           <li class="platformRow">
-            <span class="platformName">iOS</span>
+            <span class="platformNameGroup">
+              <svg class="platformIcon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+              </svg>
+              <span class="platformName">iOS</span>
+            </span>
             <span class="platformDivider">—</span>
             <a href="https://apps.apple.com/us/app/misty-connect/id6771731417" target="_blank" rel="noopener" class="platformLink">live on the App Store ↗</a>
           </li>
           <li class="platformRow">
-            <span class="platformName">Android</span>
+            <span class="platformNameGroup">
+              <svg class="platformIcon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M3.609 1.814L13.792 12 3.609 22.186a.996.996 0 01-.609-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 010 1.73l-2.808 1.626-2.499-2.491 2.5-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303L5.864 2.658z"/>
+              </svg>
+              <span class="platformName">Android</span>
+            </span>
             <span class="platformDivider">—</span>
             <span class="platformPending">pending Google Play release</span>
           </li>
@@ -35,8 +69,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </section>
 
     <dotlottie-wc src="/animation.lottie" autoplay loop class="mascot"></dotlottie-wc>
-
-    <span class="soon">// more soon</span>
   </div>
 </BaseLayout>
 
@@ -71,7 +103,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
   .photoFrame {
     margin: 0;
-    width: min(420px, 90vw);
+    width: min(360px, 85vw);
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
@@ -88,12 +120,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     aspect-ratio: 19 / 10;
   }
 
-  .soon {
-    font-size: 1.2rem;
-    font-weight: 400;
-    letter-spacing: 0.01em;
-  }
-
   .builtSection {
     width: min(520px, 100%);
     margin-top: 1rem;
@@ -103,11 +129,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     text-align: center;
   }
 
-  .sectionHeading {
-    font-size: 1.2rem;
-    font-weight: 400;
-    letter-spacing: 0.01em;
-    margin-bottom: 1.75rem;
+  .pointerArrow {
+    width: 22px;
+    height: 30px;
+    margin-bottom: 1rem;
+    opacity: 0.7;
   }
 
   .project {
@@ -134,31 +160,169 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     font-weight: 500;
     letter-spacing: 0.02em;
     text-wrap: balance;
+    background: #0a0a0a;
+    border: 1px solid #1f1f1f;
+    padding: 0.35rem 0.9rem;
+    border-radius: 8px;
+    display: inline-block;
   }
 
   .projectMeta {
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
   }
 
+  .techDot {
+    opacity: 0.3;
+  }
+
+  .techFlutter { color: #54C5F8; }
+  .techDart    { color: #00B4AB; }
+  .techBle     { color: #4DA9FF; }
+
   .projectBlurb {
-    font-size: 1rem;
-    line-height: 1.7;
-    margin-top: 0.3rem;
-    max-width: 44ch;
-    overflow-wrap: break-word;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: 0.2rem;
+    max-width: 36ch;
+    text-wrap: balance;
+  }
+
+  .expand {
+    margin-top: 0.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+  }
+
+  .expand[open] {
+    margin-top: 0.4rem;
+  }
+
+  .expandToggle {
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+    padding: 0.4rem 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    background: #0a0a0a;
+    border: 1px solid #1f1f1f;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .expandToggle::-webkit-details-marker {
+    display: none;
+  }
+
+  .expandText::before {
+    content: "technical details";
+  }
+
+  .expand[open] .expandText::before {
+    content: "hide";
+  }
+
+  .expandChevron {
+    width: 12px;
+    height: 12px;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .expand[open] .expandChevron {
+    transform: rotate(180deg);
+  }
+
+  .expandToggle:hover {
+    background: #161616;
+    border-color: #2a2a2a;
+  }
+
+  .expandToggle:active {
+    transform: scale(0.97);
+  }
+
+  /* Keyboard-only focus rings — invisible to mouse users. */
+  .expandToggle:focus-visible,
+  .platformLink:focus-visible,
+  .logoLink:focus-visible {
+    outline: 2px solid #e8e8e8;
+    outline-offset: 3px;
+  }
+
+  .expandToggle:focus-visible {
+    border-radius: 999px;
+  }
+
+  .platformLink:focus-visible {
+    border-radius: 4px;
+  }
+
+  .logoLink:focus-visible {
+    border-radius: 4px;
+  }
+
+  .srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .expandBody {
+    margin: 0.85rem auto 0;
+    padding: 1rem 1.2rem;
+    padding-inline-start: 1.2rem;
+    padding-inline-end: 1.2rem;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    width: min(38ch, 100%);
+    box-sizing: border-box;
+    background: #0a0a0a;
+    border: 1px solid #1f1f1f;
+    border-radius: 10px;
+    text-align: center;
     text-wrap: pretty;
-    hyphens: auto;
+    list-style: none;
+  }
+
+  .expandBody li {
+    margin: 0;
+    padding: 0;
+  }
+
+  .expandBody li + li {
+    margin-top: 0.6rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid #1a1a1a;
   }
 
   .platformList {
-    margin: 0.6rem 0 0;
+    margin: 0.8rem 0 0;
     padding: 0;
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.4rem;
     font-size: 0.9rem;
   }
 
@@ -170,9 +334,21 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     flex-wrap: wrap;
   }
 
+  .platformNameGroup {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-width: 5.2rem;
+    justify-content: flex-end;
+  }
+
+  .platformIcon {
+    width: 0.95em;
+    height: 0.95em;
+    flex-shrink: 0;
+  }
+
   .platformName {
-    min-width: 3.5rem;
-    text-align: right;
     letter-spacing: 0.05em;
   }
 
@@ -198,7 +374,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
   @media (max-width: 480px) {
     .heroContent {
-      gap: 1.25rem;
+      gap: 1rem;
     }
 
     .name {
@@ -210,61 +386,88 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     }
 
     .photoFrame {
-      width: min(320px, 85vw);
+      width: min(260px, 75vw);
     }
 
     .mascot {
-      width: min(300px, 80vw);
-    }
-
-    .soon {
-      font-size: 0.9rem;
+      width: min(260px, 75vw);
     }
 
     .builtSection {
-      margin-top: 0.75rem;
+      margin-top: 0.5rem;
     }
 
-    .sectionHeading {
-      font-size: 0.9rem;
-      margin-bottom: 1.5rem;
+    .pointerArrow {
+      width: 18px;
+      height: 26px;
+      margin-bottom: 0.75rem;
     }
 
     .project {
-      gap: 0.55rem;
-      padding: 1.75rem 1.25rem;
-      border-radius: 14px;
+      gap: 0.45rem;
+      padding: 1.35rem 1rem;
+      border-radius: 12px;
       width: 100%;
     }
 
     .appIcon {
-      width: 58px;
-      height: 58px;
-      border-radius: 13px;
-      margin-bottom: 0.2rem;
+      width: 54px;
+      height: 54px;
+      border-radius: 12px;
+      margin-bottom: 0.15rem;
     }
 
     .projectTitle {
-      font-size: 1rem;
+      font-size: 0.95rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 7px;
     }
 
     .projectMeta {
-      font-size: 0.75rem;
-    }
-
-    .projectBlurb {
-      font-size: 0.88rem;
-      line-height: 1.7;
-      margin-top: 0.1rem;
-    }
-
-    .platformList {
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       gap: 0.3rem;
     }
 
-    .platformName {
-      min-width: 3rem;
+    .projectBlurb {
+      font-size: 0.85rem;
+      line-height: 1.55;
+      margin-top: 0.05rem;
+    }
+
+    .expandToggle {
+      padding: 0.35rem 0.75rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      gap: 0.4rem;
+    }
+
+    .expandChevron {
+      width: 11px;
+      height: 11px;
+    }
+
+    .expandBody {
+      font-size: 0.8rem;
+      line-height: 1.55;
+      margin-top: 0.65rem;
+      padding: 0.85rem 1rem;
+      border-radius: 9px;
+    }
+
+    .expandBody li + li {
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+    }
+
+    .platformList {
+      font-size: 0.78rem;
+      gap: 0.25rem;
+      margin-top: 0.4rem;
+    }
+
+    .platformNameGroup {
+      min-width: 4.6rem;
+      gap: 0.3rem;
     }
   }
 </style>
