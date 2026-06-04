@@ -9,17 +9,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <figure class="photoFrame">
       <img src="/leo1.jpg" alt="Leo with Furhat robots" class="photo" />
     </figure>
-    <section class="builtSection" aria-label="Things I've built">
-      <h2 class="sectionHeading">// things i've built</h2>
+    <section class="builtSection" aria-label="Shipped">
+      <h2 class="sectionHeading">// shipped</h2>
 
       <article class="project">
         <img src="/misty-connect-icon.png" alt="" class="appIcon" />
         <h3 class="projectTitle">Misty Connect</h3>
         <span class="projectMeta">iOS · Flutter · BLE</span>
         <p class="projectBlurb">
-          A Bluetooth provisioning tool for Misty II owners. Discovers nearby robots via BLE advertisements, exchanges binary frames over a custom GATT service to hand off Wi-Fi credentials, and returns the assigned IP. Protocol layer is pure Dart and fully unit-tested; previously seen robots are cached for one-tap reconnects.
+          A Bluetooth provisioning tool for users and developers of the Misty II robot. Discovers nearby robots over BLE, exchanges binary frames across a custom GATT service to hand off Wi-Fi credentials, and returns the assigned IP. Pure-Dart protocol layer, fully unit-tested. Previously seen robots are cached for one-tap reconnects.
         </p>
         <a href="https://apps.apple.com/us/app/misty-connect/id6771731417" target="_blank" rel="noopener" class="storeLink">App Store ↗</a>
+        <span class="storeNote">Google Play — coming soon</span>
       </article>
     </section>
 
@@ -122,6 +123,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     font-size: 1.1rem;
     font-weight: 500;
     letter-spacing: 0.02em;
+    text-wrap: balance;
   }
 
   .projectMeta {
@@ -134,7 +136,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     font-size: 1rem;
     line-height: 1.7;
     margin-top: 0.3rem;
-    overflow-wrap: anywhere;
+    max-width: 44ch;
+    overflow-wrap: break-word;
+    text-wrap: pretty;
+    hyphens: auto;
   }
 
   .storeLink {
@@ -149,6 +154,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
   .storeLink:hover {
     opacity: 0.7;
+  }
+
+  .storeNote {
+    margin-top: 0.25rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
   }
 
   @media (max-width: 480px) {
@@ -215,6 +226,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
     .storeLink {
       font-size: 0.85rem;
+    }
+
+    .storeNote {
+      font-size: 0.72rem;
     }
   }
 </style>
