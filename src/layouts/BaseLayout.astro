@@ -61,7 +61,7 @@ const ogImage = `${siteUrl}/leo1.jpg`;
   .container {
     max-width: 680px;
     margin: 0 auto;
-    padding: 64px 24px;
+    padding: 32px 24px;
     min-height: 100vh;
     min-height: 100dvh;
     display: flex;
@@ -70,18 +70,17 @@ const ogImage = `${siteUrl}/leo1.jpg`;
     justify-content: center;
   }
 
-  /* When content is taller than viewport, top-align so nothing gets pushed off-screen. */
-  @media (max-height: 900px) {
+  /* Tight viewports: drop padding further so default state fits without scroll. */
+  @media (max-height: 720px) {
     .container {
-      justify-content: flex-start;
-      padding-top: 48px;
-      padding-bottom: 48px;
+      padding-top: 20px;
+      padding-bottom: 20px;
     }
   }
 
   @media (max-width: 480px) {
     .container {
-      padding: 32px 16px;
+      padding: 20px 16px;
     }
   }
 

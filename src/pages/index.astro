@@ -6,14 +6,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <div class="heroContent">
     <h1 class="name">Leo Gardberg</h1>
     <p>currently @ <a href="https://furhatrobotics.com" target="_blank" class="logoLink"><img src="/furhatlogo.png" alt="Furhat Robotics" class="logo" /></a> — working with social robots</p>
-    <figure class="photoFrame">
-      <img src="/leo1.jpg" alt="Leo with Furhat robots" class="photo" />
-    </figure>
     <section class="builtSection" aria-label="Project">
-      <svg class="pointerArrow" viewBox="0 0 24 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <line x1="12" y1="3" x2="12" y2="24"/>
-        <polyline points="6 19 12 25 18 19"/>
-      </svg>
+      <div class="pointer" aria-hidden="true">
+        <svg class="pointerChevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <svg class="pointerChevron pointerChevronLag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </div>
 
       <article class="project">
         <img src="/misty-connect-icon.png" alt="" class="appIcon" />
@@ -68,7 +69,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </article>
     </section>
 
-    <dotlottie-wc src="/animation.lottie" autoplay loop class="mascot"></dotlottie-wc>
+    <div class="closing">
+      <dotlottie-wc src="/animation.lottie" autoplay loop class="mascot"></dotlottie-wc>
+      <figure class="photoFrame">
+        <img src="/leo1.jpg" alt="Leo with Furhat robots" class="photo" />
+      </figure>
+    </div>
   </div>
 </BaseLayout>
 
@@ -78,7 +84,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1.1rem;
     text-align: center;
   }
 
@@ -101,9 +107,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     filter: invert(1);
   }
 
+  .closing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+  }
+
   .photoFrame {
     margin: 0;
-    width: min(360px, 85vw);
+    flex: 0 1 220px;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
@@ -116,43 +130,63 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   }
 
   .mascot {
-    width: min(380px, 90vw);
+    flex: 0 0 180px;
     aspect-ratio: 19 / 10;
   }
 
   .builtSection {
     width: min(520px, 100%);
-    margin-top: 1rem;
+    margin-top: 0.25rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
 
-  .pointerArrow {
-    width: 22px;
-    height: 30px;
-    margin-bottom: 1rem;
-    opacity: 0.7;
+  .pointer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    gap: 2px;
+    height: 24px;
+  }
+
+  .pointerChevron {
+    width: 18px;
+    height: 18px;
+    opacity: 0.55;
+    animation: pointerPulse 1.8s ease-in-out infinite;
+  }
+
+  .pointerChevronLag {
+    margin-top: -10px;
+    opacity: 0.25;
+    animation-delay: 0.25s;
+  }
+
+  @keyframes pointerPulse {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(4px); }
   }
 
   .project {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.65rem;
+    gap: 0.55rem;
     max-width: 440px;
-    padding: 2rem 1.75rem;
+    padding: 1.4rem 1.6rem;
     background: #131313;
     border: 1px solid #1f1f1f;
     border-radius: 16px;
   }
 
   .appIcon {
-    width: 72px;
-    height: 72px;
-    border-radius: 16px;
-    margin-bottom: 0.4rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+    margin-bottom: 0.25rem;
   }
 
   .projectTitle {
@@ -317,13 +351,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   }
 
   .platformList {
-    margin: 0.8rem 0 0;
+    margin: 0.5rem 0 0;
     padding: 0;
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
-    font-size: 0.9rem;
+    gap: 0.3rem;
+    font-size: 0.85rem;
   }
 
   .platformRow {
@@ -374,7 +408,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
   @media (max-width: 480px) {
     .heroContent {
-      gap: 1rem;
+      gap: 0.75rem;
     }
 
     .name {
@@ -385,36 +419,48 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       width: 90px;
     }
 
+    .closing {
+      gap: 0.6rem;
+    }
+
     .photoFrame {
-      width: min(260px, 75vw);
+      flex: 0 1 180px;
     }
 
     .mascot {
-      width: min(260px, 75vw);
+      flex: 0 0 140px;
     }
 
     .builtSection {
       margin-top: 0.5rem;
     }
 
-    .pointerArrow {
-      width: 18px;
-      height: 26px;
+    .pointer {
+      height: 24px;
       margin-bottom: 0.75rem;
     }
 
+    .pointerChevron {
+      width: 16px;
+      height: 16px;
+    }
+
+    .pointerChevronLag {
+      margin-top: -9px;
+    }
+
     .project {
-      gap: 0.45rem;
-      padding: 1.35rem 1rem;
+      gap: 0.4rem;
+      padding: 1.1rem 0.9rem;
       border-radius: 12px;
       width: 100%;
     }
 
     .appIcon {
-      width: 54px;
-      height: 54px;
-      border-radius: 12px;
-      margin-bottom: 0.15rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 11px;
+      margin-bottom: 0.1rem;
     }
 
     .projectTitle {
