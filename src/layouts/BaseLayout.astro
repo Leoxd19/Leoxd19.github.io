@@ -39,13 +39,28 @@ const { title } = Astro.props;
   .container {
     max-width: 680px;
     margin: 0 auto;
-    padding: 24px;
+    padding: 64px 24px;
     min-height: 100vh;
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+
+  /* When content is taller than viewport, top-align so nothing gets pushed off-screen. */
+  @media (max-height: 900px) {
+    .container {
+      justify-content: flex-start;
+      padding-top: 48px;
+      padding-bottom: 48px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 32px 16px;
+    }
   }
 
   .hero {

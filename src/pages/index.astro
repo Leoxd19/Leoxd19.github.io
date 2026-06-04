@@ -9,7 +9,22 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <figure class="photoFrame">
       <img src="/leo1.jpg" alt="Leo with Furhat robots" class="photo" />
     </figure>
+    <section class="builtSection" aria-label="Things I've built">
+      <h2 class="sectionHeading">// things i've built</h2>
+
+      <article class="project">
+        <img src="/misty-connect-icon.png" alt="" class="appIcon" />
+        <h3 class="projectTitle">Misty Connect</h3>
+        <span class="projectMeta">iOS · Flutter · BLE</span>
+        <p class="projectBlurb">
+          A Bluetooth provisioning tool for Misty II owners. Discovers nearby robots via BLE advertisements, exchanges binary frames over a custom GATT service to hand off Wi-Fi credentials, and returns the assigned IP. Protocol layer is pure Dart and fully unit-tested; previously seen robots are cached for one-tap reconnects.
+        </p>
+        <a href="https://apps.apple.com/us/app/misty-connect/id6771731417" target="_blank" rel="noopener" class="storeLink">App Store ↗</a>
+      </article>
+    </section>
+
     <dotlottie-wc src="/animation.lottie" autoplay loop class="mascot"></dotlottie-wc>
+
     <span class="soon">// more soon</span>
   </div>
 </BaseLayout>
@@ -68,9 +83,77 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     letter-spacing: 0.01em;
   }
 
+  .builtSection {
+    width: min(520px, 100%);
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .sectionHeading {
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    margin-bottom: 1.75rem;
+  }
+
+  .project {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.65rem;
+    max-width: 440px;
+    padding: 2rem 1.75rem;
+    background: #131313;
+    border: 1px solid #1f1f1f;
+    border-radius: 16px;
+  }
+
+  .appIcon {
+    width: 72px;
+    height: 72px;
+    border-radius: 16px;
+    margin-bottom: 0.4rem;
+  }
+
+  .projectTitle {
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .projectMeta {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .projectBlurb {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-top: 0.3rem;
+    overflow-wrap: anywhere;
+  }
+
+  .storeLink {
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    color: #e8e8e8;
+    text-decoration: none;
+    border-bottom: 1px solid #e8e8e8;
+    padding-bottom: 2px;
+    transition: opacity 0.15s ease;
+  }
+
+  .storeLink:hover {
+    opacity: 0.7;
+  }
+
   @media (max-width: 480px) {
     .heroContent {
-      gap: 1rem;
+      gap: 1.25rem;
     }
 
     .name {
@@ -91,6 +174,47 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
     .soon {
       font-size: 0.9rem;
+    }
+
+    .builtSection {
+      margin-top: 0.75rem;
+    }
+
+    .sectionHeading {
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .project {
+      gap: 0.55rem;
+      padding: 1.75rem 1.25rem;
+      border-radius: 14px;
+      width: 100%;
+    }
+
+    .appIcon {
+      width: 58px;
+      height: 58px;
+      border-radius: 13px;
+      margin-bottom: 0.2rem;
+    }
+
+    .projectTitle {
+      font-size: 1rem;
+    }
+
+    .projectMeta {
+      font-size: 0.75rem;
+    }
+
+    .projectBlurb {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      margin-top: 0.1rem;
+    }
+
+    .storeLink {
+      font-size: 0.85rem;
     }
   }
 </style>
