@@ -19,8 +19,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <p class="projectBlurb">
           A Bluetooth provisioning tool for users and developers of the Misty II robot. Discovers nearby robots over BLE, exchanges binary frames across a custom GATT service to hand off Wi-Fi credentials, and returns the assigned IP. Pure-Dart protocol layer, fully unit-tested. Previously seen robots are cached for one-tap reconnects.
         </p>
-        <a href="https://apps.apple.com/us/app/misty-connect/id6771731417" target="_blank" rel="noopener" class="storeLink">App Store ↗</a>
-        <span class="storeNote">Google Play — coming soon</span>
+        <ul class="platformList">
+          <li class="platformRow">
+            <span class="platformName">iOS</span>
+            <span class="platformDivider">—</span>
+            <a href="https://apps.apple.com/us/app/misty-connect/id6771731417" target="_blank" rel="noopener" class="platformLink">live on the App Store ↗</a>
+          </li>
+          <li class="platformRow">
+            <span class="platformName">Android</span>
+            <span class="platformDivider">—</span>
+            <span class="platformPending">pending Google Play release</span>
+          </li>
+        </ul>
       </article>
     </section>
 
@@ -142,24 +152,48 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     hyphens: auto;
   }
 
-  .storeLink {
-    margin-top: 0.5rem;
-    font-size: 0.95rem;
+  .platformList {
+    margin: 0.6rem 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-size: 0.9rem;
+  }
+
+  .platformRow {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .platformName {
+    min-width: 3.5rem;
+    text-align: right;
+    letter-spacing: 0.05em;
+  }
+
+  .platformDivider {
+    opacity: 0.4;
+  }
+
+  .platformLink {
     color: #e8e8e8;
     text-decoration: none;
     border-bottom: 1px solid #e8e8e8;
-    padding-bottom: 2px;
+    padding-bottom: 1px;
     transition: opacity 0.15s ease;
   }
 
-  .storeLink:hover {
+  .platformLink:hover {
     opacity: 0.7;
   }
 
-  .storeNote {
-    margin-top: 0.25rem;
-    font-size: 0.8rem;
-    letter-spacing: 0.05em;
+  .platformPending {
+    font-style: italic;
   }
 
   @media (max-width: 480px) {
@@ -224,12 +258,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       margin-top: 0.1rem;
     }
 
-    .storeLink {
-      font-size: 0.85rem;
+    .platformList {
+      font-size: 0.8rem;
+      gap: 0.3rem;
     }
 
-    .storeNote {
-      font-size: 0.72rem;
+    .platformName {
+      min-width: 3rem;
     }
   }
 </style>
