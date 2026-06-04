@@ -6,6 +6,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <div class="heroContent">
     <h1 class="name">Leo Gardberg</h1>
     <p>currently @ <a href="https://furhatrobotics.com" target="_blank" class="logoLink"><img src="/furhatlogo.png" alt="Furhat Robotics" class="logo" /></a> — working with social robots</p>
+    <figure class="photoFrame">
+      <img src="/leo1.jpg" alt="Leo with Furhat robots" class="photo" />
+    </figure>
     <dotlottie-wc src="/animation.lottie" autoplay loop class="mascot"></dotlottie-wc>
     <span class="soon">// more soon</span>
   </div>
@@ -40,6 +43,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     filter: invert(1);
   }
 
+  .photoFrame {
+    margin: 0;
+    width: min(420px, 90vw);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  }
+
+  .photo {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
   .mascot {
     width: min(380px, 90vw);
     aspect-ratio: 19 / 10;
@@ -62,6 +79,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
     .logo {
       width: 90px;
+    }
+
+    .photoFrame {
+      width: min(320px, 85vw);
     }
 
     .mascot {
