@@ -98,6 +98,37 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           A desktop companion pet for Petdex, inspired by the Furhat social robot. Reacts to local Codex and Claude Code activity with small ambient animations.
         </p>
         <p class="roadmapNote"><em>In dev:</em> higher-resolution sprites, larger floating window, and swappable faces.</p>
+        <details class="expand">
+          <summary class="expandToggle">
+            <span class="expandText" data-closed="preview" data-open="hide" aria-hidden="true"></span>
+            <svg class="expandChevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+            <span class="srOnly">Toggle preview images</span>
+          </summary>
+          <div class="previewBody">
+            <figure class="previewItem">
+              <figcaption class="previewLabel">idle</figcaption>
+              <img src="/furhatling-idle.gif" alt="Furhatling idle animation" class="previewGif" loading="lazy" />
+            </figure>
+            <figure class="previewItem">
+              <figcaption class="previewLabel">running</figcaption>
+              <img src="/furhatling-running.gif" alt="Furhatling running animation" class="previewGif" loading="lazy" />
+            </figure>
+            <figure class="previewItem">
+              <figcaption class="previewLabel">waiting</figcaption>
+              <img src="/furhatling-waiting.gif" alt="Furhatling waiting animation" class="previewGif" loading="lazy" />
+            </figure>
+            <figure class="previewItem">
+              <figcaption class="previewLabel">review</figcaption>
+              <img src="/furhatling-review.gif" alt="Furhatling review animation" class="previewGif" loading="lazy" />
+            </figure>
+            <figure class="previewItem">
+              <figcaption class="previewLabel">failed</figcaption>
+              <img src="/furhatling-failed.gif" alt="Furhatling failed animation" class="previewGif" loading="lazy" />
+            </figure>
+          </div>
+        </details>
         <ul class="platformList">
           <li class="platformRow">
             <span class="platformNameGroup">
@@ -298,14 +329,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     margin-bottom: 0.25rem;
   }
 
-  /* The Furhatling preview is a transparent GIF — let it sit directly on
-     the card with no frame or backdrop. Slightly larger so the animation
-     reads as the card's main visual without breaking icon-row symmetry. */
+  /* The Furhatling preview is a transparent GIF. Sized to its natural
+     192:208 aspect ratio (no forced square + object-fit) so Firefox /
+     Chromium / Safari all rasterize the same scale internally — avoids
+     a sub-pixel rendering difference where Firefox on Windows letterboxes
+     inside the box and then anti-aliases the edges differently. */
   .furhatlingIcon {
-    width: 68px;
-    height: 68px;
+    width: 80px;
+    height: auto;
     border-radius: 0;
-    object-fit: contain;
     margin-bottom: 0.1rem;
   }
 
@@ -551,64 +583,57 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     border-top: 1px solid #1a1a1a;
   }
 
-  /* Install steps: a clean numbered list inside a recessed panel.
-     Each step has a small label + a code snippet underneath. */
-  .installSteps {
-    list-style: none;
-    counter-reset: step;
-    margin: 0.85rem auto 0;
-    padding: 0.95rem 1.1rem;
-    width: min(40ch, 100%);
-    box-sizing: border-box;
+  /* Furhatling preview row — five state gifs, labeled, no chrome.
+     The card itself is the surface; the gifs sit directly on it. */
+  .previewBody {
+    margin: 0.95rem 0 0;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .previewItem {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.45rem;
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  /* Each state label gets a small pill backdrop matching the title-pill
+     aesthetic — same #0a0a0a fill, same hairline border, same rounded
+     shape — so labels read as "tagged" rather than floating text. Full
+     opacity (#e8e8e8) on the text gives clean contrast against the dark
+     fill instead of the faded look they had before. */
+  .previewLabel {
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #e8e8e8;
     background: #0a0a0a;
     border: 1px solid #1f1f1f;
-    border-radius: 10px;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
-  }
-
-  .installSteps li {
-    counter-increment: step;
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-    padding-left: 1.4rem;
-    position: relative;
-  }
-
-  .installSteps li::before {
-    content: counter(step);
-    position: absolute;
-    left: 0;
-    top: 0.1rem;
-    width: 1rem;
-    height: 1rem;
-    font-size: 0.65rem;
-    line-height: 1rem;
-    text-align: center;
+    padding: 0.15rem 0.5rem;
     border-radius: 999px;
-    border: 1px solid #2a2a2a;
-    color: rgba(232, 232, 232, 0.6);
+    line-height: 1.2;
   }
 
-  .installLabel {
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba(232, 232, 232, 0.6);
-  }
-
-  .installCmd {
+  .previewGif {
+    height: 72px;
+    width: auto;
+    max-width: 100%;
     display: block;
-    font-family: inherit;
-    font-size: 0.78rem;
-    line-height: 1.5;
-    color: #d8d8d8;
-    word-break: break-word;
-    overflow-wrap: anywhere;
+    /* Source frames are 192×208 (Petdex sprite atlas). Setting the
+       aspect ratio explicitly means if max-width kicks in on a narrow
+       device, the gif scales down both dimensions together instead of
+       squishing into a distorted box. */
+    aspect-ratio: 192 / 208;
   }
+
 
   .platformList {
     margin: 0.5rem 0 0;
@@ -723,8 +748,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     }
 
     .furhatlingIcon {
-      width: 56px;
-      height: 56px;
+      width: 66px;
+      height: auto;
     }
 
     .projectTitle {
@@ -784,24 +809,19 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       padding-top: 0.5rem;
     }
 
-    .installSteps {
-      padding: 0.85rem 1rem;
-      margin-top: 0.65rem;
-      border-radius: 9px;
-      gap: 0.55rem;
+    .previewBody {
+      gap: 0.35rem;
+      margin-top: 0.8rem;
     }
 
-    .installSteps li {
-      padding-left: 1.25rem;
+    .previewGif {
+      height: 56px;
     }
 
-    .installLabel {
-      font-size: 0.65rem;
-    }
-
-    .installCmd {
-      font-size: 0.7rem;
-      line-height: 1.45;
+    .previewLabel {
+      font-size: 0.5rem;
+      letter-spacing: 0.08em;
+      padding: 0.1rem 0.4rem;
     }
 
     .platformList {
