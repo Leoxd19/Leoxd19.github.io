@@ -329,8 +329,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     margin-bottom: 0.25rem;
   }
 
-  /* The Furhatling preview is a transparent GIF. Sized to its natural
-     192:208 aspect ratio (no forced square + object-fit) so Firefox /
+  /* The Furhatling preview is a transparent GIF (192×208 source). Sized
+     to its natural aspect (no forced square + object-fit) so Firefox /
      Chromium / Safari all rasterize the same scale internally — avoids
      a sub-pixel rendering difference where Firefox on Windows letterboxes
      inside the box and then anti-aliases the edges differently. */
@@ -339,6 +339,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     height: auto;
     border-radius: 0;
     margin-bottom: 0.1rem;
+    /* Force high-quality downsampling. Default (auto) lets Firefox on
+       Windows fall back to a cheaper averaging algorithm for animated
+       GIFs that visibly pixelates the smoothly-rendered character art. */
+    image-rendering: auto;
+    image-rendering: high-quality;
   }
 
   .projectTitle {
@@ -627,11 +632,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     width: auto;
     max-width: 100%;
     display: block;
-    /* Source frames are 192×208 (Petdex sprite atlas). Setting the
-       aspect ratio explicitly means if max-width kicks in on a narrow
-       device, the gif scales down both dimensions together instead of
-       squishing into a distorted box. */
+    /* Source frames are 192×208 (Petdex sprite atlas natural size).
+       Setting the aspect ratio explicitly means if max-width kicks
+       in on a narrow device, the gif scales down both dimensions
+       together instead of squishing into a distorted box. */
     aspect-ratio: 192 / 208;
+    /* Same Firefox-on-Windows rationale as .furhatlingIcon: force
+       high-quality downsampling for animated GIFs. */
+    image-rendering: auto;
+    image-rendering: high-quality;
   }
 
 
