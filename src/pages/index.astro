@@ -4,6 +4,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <BaseLayout title="Leo Gardberg — working with social robots">
   <div class="heroContent">
+    <img
+      id="avatar"
+      src="/avatar.jpg"
+      alt=""
+      class="avatar"
+      aria-hidden="true"
+      data-srcs="/avatar.jpg,/avatar-2.jpg,/avatar-3.jpg"
+    />
     <h1 class="name">Leo Gardberg</h1>
     <p>currently @ <a href="https://furhatrobotics.com" target="_blank" class="logoLink"><img src="/furhatlogo.png" alt="Furhat Robotics" class="logo" /></a> — working with social robots</p>
     <section class="builtSection" aria-label="Project">
@@ -19,29 +27,34 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <article class="project">
         <img src="/misty-connect-icon.png" alt="" class="appIcon" />
         <h3 class="projectTitle">Misty Connect</h3>
+        <span class="statusBadge" aria-label="Version 1.1.1">v1.1.1</span>
         <div class="projectMeta">
-          <span class="techTag techFlutter">Flutter</span>
-          <span class="techDot">·</span>
-          <span class="techTag techDart">Dart</span>
-          <span class="techDot">·</span>
-          <span class="techTag techBle">BLE</span>
+          <span class="techIcon techFlutter" aria-label="Flutter">
+            <svg viewBox="0 0 24 24" fill="currentColor"><title>Flutter</title><path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.37zm.014 11.072L7.857 17.53l6.471 6.47H21.7l-6.46-6.468 6.46-6.46z"/></svg>
+          </span>
+          <span class="techIcon techIconRaster" aria-label="Dart" title="Dart">
+            <img src="/dart-logo.png" alt="" width="48" height="48" />
+          </span>
+          <span class="techIcon techBle" aria-label="Bluetooth Low Energy">
+            <svg viewBox="0 0 24 24" fill="currentColor"><title>Bluetooth</title><path d="M17.71 7.71L12 2h-1v7.59L6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 11 14.41V22h1l5.71-5.71-4.3-4.29 4.3-4.29zM13 5.83l1.88 1.88L13 9.59V5.83zm1.88 10.46L13 18.17v-3.76l1.88 1.88z"/></svg>
+          </span>
         </div>
         <p class="projectBlurb">
-          Bluetooth Wi-Fi provisioning for the Misty II robot.
+          A Bluetooth Wi-Fi provisioning tool for the Misty II robot.
         </p>
         <details class="expand">
           <summary class="expandToggle">
-            <span class="expandText" aria-hidden="true"></span>
+            <span class="expandText" data-closed="technical details" data-open="hide" aria-hidden="true"></span>
             <svg class="expandChevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
             <span class="srOnly">Toggle technical details</span>
           </summary>
           <ul class="expandBody">
-            <li>Discovers nearby Misty II robots via BLE advertisements.</li>
-            <li>Custom GATT service to hand off Wi-Fi credentials and read back the assigned IP.</li>
+            <li>BLE discovery of nearby Misty II robots.</li>
+            <li>Custom GATT service to exchange Wi-Fi credentials and read back the assigned IP.</li>
             <li>Pure-Dart protocol layer, fully unit-tested.</li>
-            <li>Previously seen robots cached for one-tap reconnects.</li>
+            <li>Local cache of seen robots for one-tap reconnects.</li>
           </ul>
         </details>
         <ul class="platformList">
@@ -67,16 +80,102 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </li>
         </ul>
       </article>
+
+      <article class="project">
+        <img src="/furhatling-idle.gif" alt="Furhatling pet animation" class="appIcon furhatlingIcon" />
+        <h3 class="projectTitle">Furhatling</h3>
+        <span class="statusBadge" aria-label="Alpha release, version 0.1">v0.1 · alpha</span>
+        <div class="projectMeta">
+          <a href="https://petdex.crafter.run/" target="_blank" rel="noopener" class="techTagLink techPetdex">Petdex</a>
+          <span class="techIcon techIconRaster" aria-label="Codex CLI" title="Codex">
+            <img src="/codex-logo.png" alt="" width="40" height="40" />
+          </span>
+          <span class="techIcon techClaude" aria-label="Claude">
+            <svg viewBox="0 0 24 24" fill="currentColor"><title>Claude</title><path d="M4.709 15.955l4.72-2.647.08-.23-.08-.128H9.2l-.79-.048-2.698-.073-2.339-.097-2.266-.122-.571-.121L0 11.784l.055-.352.48-.321.686.06 1.52.103 2.278.158 1.652.097 2.449.255h.389l.055-.157-.134-.098-.103-.097-2.358-1.596-2.552-1.688-1.336-.972-.722-.491-.365-.462-.158-1.008.656-.722.881.06.225.061.893.686 1.908 1.476 2.491 1.833.365.304.146-.103.018-.073-.164-.274-1.355-2.448-1.446-2.49-.644-1.032-.17-.619a2.97 2.97 0 0 1-.104-.729L6.283.134 6.696 0l.996.134.42.364.62 1.414 1.002 2.229 1.555 3.03.456.898.243.832.091.255h.158V9.01l.128-1.706.237-2.095.23-2.695.08-.76.376-.91.747-.492.584.28.48.685-.067.444-.286 1.851-.559 2.903-.364 1.942h.212l.243-.242.985-1.306 1.652-2.064.73-.82.85-.904.547-.431h1.033l.76 1.129-.34 1.166-1.064 1.347-.881 1.142-1.263 1.7-.79 1.36.073.11.188-.02 2.856-.606 1.543-.28 1.841-.315.833.388.091.395-.328.807-1.969.486-2.309.462-3.439.813-.042.03.049.061 1.549.146.662.036h1.622l3.02.225.79.522.474.638-.079.485-1.215.62-1.64-.389-3.829-.91-1.312-.329h-.182v.11l1.093 1.068 2.006 1.81 2.509 2.33.127.578-.322.455-.34-.049-2.205-1.659-.851-.747-1.927-1.622h-.128v.17l.444.649 2.345 3.521.122 1.08-.17.353-.608.213-.668-.122-1.374-1.925-1.415-2.167-1.143-1.943-.14.08-.674 7.254-.316.37-.729.28-.607-.461-.322-.747.322-1.476.389-1.924.315-1.53.286-1.9.17-.632-.011-.042-.14.018-1.434 1.967-2.18 2.945-1.726 1.845-.414.164-.717-.37.067-.662.401-.589 2.388-3.036 1.44-1.882.93-1.086-.006-.158h-.055L4.132 18.56l-1.13.146-.487-.456.061-.746.231-.243 1.908-1.312z"/></svg>
+          </span>
+        </div>
+        <p class="projectBlurb">
+          A desktop companion pet for Petdex, inspired by the Furhat social robot. Reacts to local Codex and Claude Code activity with small ambient animations.
+        </p>
+        <p class="roadmapNote"><em>In dev:</em> higher-resolution sprites, larger floating window, and swappable faces.</p>
+        <ul class="platformList">
+          <li class="platformRow">
+            <span class="platformNameGroup">
+              <svg class="platformIcon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+              </svg>
+              <span class="platformName">Source</span>
+            </span>
+            <span class="platformDivider">—</span>
+            <span class="platformPending">pending public release</span>
+          </li>
+          <li class="platformRow">
+            <span class="platformNameGroup">
+              <svg class="platformIcon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 1.5l-9 5.18v10.64L12 22.5l9-5.18V6.68L12 1.5zm6.39 5.39L12 10.34 5.61 6.89 12 3.32l6.39 3.57zM5 8.66l6 3.31v7.95l-6-3.31V8.66zm14 7.95l-6 3.31v-7.95l6-3.31v7.95z"/>
+              </svg>
+              <span class="platformName">Petdex</span>
+            </span>
+            <span class="platformDivider">—</span>
+            <span class="platformPending">pending listing on petdex.crafter.run</span>
+          </li>
+        </ul>
+      </article>
     </section>
 
-    <div class="closing">
-      <dotlottie-wc src="/animation.lottie" autoplay loop class="mascot"></dotlottie-wc>
-      <figure class="photoFrame">
-        <img src="/leo1.jpg" alt="Leo with Furhat robots" class="photo" />
-      </figure>
-    </div>
+    <figure class="photoFrame">
+      <img src="/leo1.jpg" alt="Leo with Furhat robots" class="photo" />
+    </figure>
   </div>
 </BaseLayout>
+
+<script>
+  // Avatar hover-cycle: rotate through Tyrande crop -> Tyrande wide -> Sylvanas.
+  // Preloads the alternates so the first cycle doesn't flash, and respects
+  // prefers-reduced-motion (just snaps to the next image once per hover).
+  const avatar = document.getElementById("avatar") as HTMLImageElement | null;
+  if (avatar) {
+    const sources = (avatar.dataset.srcs ?? "").split(",").filter(Boolean);
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let i = 0;
+    let timer: number | undefined;
+
+    // Preload the alternates so the first cycle paints instantly.
+    sources.slice(1).forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+
+    const start = () => {
+      if (reduceMotion) {
+        i = (i + 1) % sources.length;
+        avatar.src = sources[i];
+        return;
+      }
+      timer = window.setInterval(() => {
+        i = (i + 1) % sources.length;
+        avatar.src = sources[i];
+      }, 650);
+    };
+
+    const stop = () => {
+      if (timer !== undefined) {
+        clearInterval(timer);
+        timer = undefined;
+      }
+      i = 0;
+      avatar.src = sources[0];
+    };
+
+    avatar.addEventListener("mouseenter", start);
+    avatar.addEventListener("mouseleave", stop);
+    // Touch fallback: cycle once per tap.
+    avatar.addEventListener("touchstart", () => {
+      i = (i + 1) % sources.length;
+      avatar.src = sources[i];
+    }, { passive: true });
+  }
+</script>
 
 <style>
   .heroContent {
@@ -86,6 +185,25 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     align-items: center;
     gap: 1.1rem;
     text-align: center;
+  }
+
+  /* Circular profile avatar — Tyrande crop at rest, cycles through two
+     other Warcraft III shots (wider Tyrande, Sylvanas) on hover. */
+  .avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #1f1f1f;
+    margin-bottom: -0.3rem;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.2s ease;
+  }
+
+  .avatar:hover {
+    transform: scale(1.08);
+    border-color: #3a3a3a;
   }
 
   .name {
@@ -107,20 +225,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     filter: invert(1);
   }
 
-  .closing {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    width: 100%;
-  }
-
+  /* Intro photo — sits between the tagline and the project section. */
   .photoFrame {
     margin: 0;
-    flex: 0 1 220px;
+    width: min(280px, 75%);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
   }
 
   .photo {
@@ -129,17 +240,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     height: auto;
   }
 
-  .mascot {
-    flex: 0 0 180px;
-    aspect-ratio: 19 / 10;
-  }
-
   .builtSection {
     width: min(520px, 100%);
     margin-top: 0.25rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
     text-align: center;
   }
 
@@ -175,11 +282,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     flex-direction: column;
     align-items: center;
     gap: 0.55rem;
+    width: 100%;
     max-width: 440px;
     padding: 1.4rem 1.6rem;
     background: #131313;
     border: 1px solid #1f1f1f;
     border-radius: 16px;
+    box-sizing: border-box;
   }
 
   .appIcon {
@@ -187,6 +296,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     height: 60px;
     border-radius: 14px;
     margin-bottom: 0.25rem;
+  }
+
+  /* The Furhatling preview is a transparent GIF — let it sit directly on
+     the card with no frame or backdrop. Slightly larger so the animation
+     reads as the card's main visual without breaking icon-row symmetry. */
+  .furhatlingIcon {
+    width: 68px;
+    height: 68px;
+    border-radius: 0;
+    object-fit: contain;
+    margin-bottom: 0.1rem;
   }
 
   .projectTitle {
@@ -201,24 +321,104 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     display: inline-block;
   }
 
-  .projectMeta {
+  /* Small status pill — sits under the title to signal release maturity. */
+  .statusBadge {
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.12rem 0.55rem;
+    border: 1px solid rgba(232, 232, 232, 0.25);
+    border-radius: 999px;
+    margin-top: -0.2rem;
+    align-self: center;
+  }
+
+  /* One-line "what's coming" note under the blurb — italicized so it
+     reads as a forward-looking aside, not a current feature claim. */
+  .roadmapNote {
     font-size: 0.78rem;
-    letter-spacing: 0.1em;
+    line-height: 1.55;
+    max-width: 36ch;
+    margin-top: 0.15rem;
+    text-wrap: balance;
+  }
+
+  .roadmapNote em {
+    font-style: italic;
+    letter-spacing: 0.04em;
+  }
+
+  .projectMeta {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.4rem;
+    gap: 0.9rem;
     flex-wrap: wrap;
+    min-height: 22px;
+    color: rgba(232, 232, 232, 0.85);
   }
 
-  .techDot {
-    opacity: 0.3;
+  /* Icon-style tag — used when the tech has a recognized logo. */
+  .techIcon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+    transition: transform 0.18s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.15s ease;
+    opacity: 0.92;
   }
 
+  .techIcon svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+  }
+
+  /* Raster brand mark (multi-color PNG/WebP) — sits at the same optical
+     height as the SVG icons. Slightly larger to compensate for the visual
+     padding inside the artwork. */
+  .techIconRaster img {
+    width: 22px;
+    height: 22px;
+    display: block;
+    object-fit: contain;
+  }
+
+  .techIcon:hover {
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+
+  /* Brand-colored fill for monochrome SVG icons (currentColor). Raster
+     PNGs (Dart, Codex) carry their own colors and don't need these. */
   .techFlutter { color: #54C5F8; }
-  .techDart    { color: #00B4AB; }
   .techBle     { color: #4DA9FF; }
+  .techPetdex  { color: #F2A65A; }
+  .techClaude  { color: #E07B53; }
+
+  /* Petdex tag becomes a brand-colored chip so it carries the same visual
+     weight as the colored icons next to it. */
+  .techTagLink {
+    color: #F2A65A;
+    text-decoration: none;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid rgba(242, 166, 90, 0.5);
+    border-radius: 999px;
+    line-height: 1.1;
+    background: rgba(242, 166, 90, 0.06);
+    transition: background 0.15s ease, border-color 0.15s ease,
+                transform 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .techTagLink:hover {
+    background: rgba(242, 166, 90, 0.14);
+    border-color: rgba(242, 166, 90, 0.85);
+    transform: translateY(-1px);
+  }
 
   .projectBlurb {
     font-size: 0.95rem;
@@ -264,11 +464,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   }
 
   .expandText::before {
-    content: "technical details";
+    content: attr(data-closed);
   }
 
   .expand[open] .expandText::before {
-    content: "hide";
+    content: attr(data-open);
   }
 
   .expandChevron {
@@ -293,7 +493,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   /* Keyboard-only focus rings — invisible to mouse users. */
   .expandToggle:focus-visible,
   .platformLink:focus-visible,
-  .logoLink:focus-visible {
+  .logoLink:focus-visible,
+  .techTagLink:focus-visible {
     outline: 2px solid #e8e8e8;
     outline-offset: 3px;
   }
@@ -348,6 +549,65 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     margin-top: 0.6rem;
     padding-top: 0.6rem;
     border-top: 1px solid #1a1a1a;
+  }
+
+  /* Install steps: a clean numbered list inside a recessed panel.
+     Each step has a small label + a code snippet underneath. */
+  .installSteps {
+    list-style: none;
+    counter-reset: step;
+    margin: 0.85rem auto 0;
+    padding: 0.95rem 1.1rem;
+    width: min(40ch, 100%);
+    box-sizing: border-box;
+    background: #0a0a0a;
+    border: 1px solid #1f1f1f;
+    border-radius: 10px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .installSteps li {
+    counter-increment: step;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding-left: 1.4rem;
+    position: relative;
+  }
+
+  .installSteps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0.1rem;
+    width: 1rem;
+    height: 1rem;
+    font-size: 0.65rem;
+    line-height: 1rem;
+    text-align: center;
+    border-radius: 999px;
+    border: 1px solid #2a2a2a;
+    color: rgba(232, 232, 232, 0.6);
+  }
+
+  .installLabel {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(232, 232, 232, 0.6);
+  }
+
+  .installCmd {
+    display: block;
+    font-family: inherit;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: #d8d8d8;
+    word-break: break-word;
+    overflow-wrap: anywhere;
   }
 
   .platformList {
@@ -411,6 +671,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       gap: 0.75rem;
     }
 
+    .avatar {
+      width: 44px;
+      height: 44px;
+      margin-bottom: -0.2rem;
+    }
+
     .name {
       font-size: 1.2rem;
     }
@@ -419,16 +685,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       width: 90px;
     }
 
-    .closing {
-      gap: 0.6rem;
-    }
-
     .photoFrame {
-      flex: 0 1 180px;
-    }
-
-    .mascot {
-      flex: 0 0 140px;
+      width: min(220px, 70%);
+      border-radius: 10px;
     }
 
     .builtSection {
@@ -463,6 +722,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       margin-bottom: 0.1rem;
     }
 
+    .furhatlingIcon {
+      width: 56px;
+      height: 56px;
+    }
+
     .projectTitle {
       font-size: 0.95rem;
       padding: 0.3rem 0.75rem;
@@ -470,8 +734,23 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     }
 
     .projectMeta {
-      font-size: 0.7rem;
-      gap: 0.3rem;
+      font-size: 0.65rem;
+      gap: 0.7rem;
+      min-height: 18px;
+    }
+
+    .techIcon svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .techIconRaster img {
+      width: 19px;
+      height: 19px;
+    }
+
+    .techTagLink {
+      padding: 0.15rem 0.5rem;
     }
 
     .projectBlurb {
@@ -503,6 +782,26 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     .expandBody li + li {
       margin-top: 0.5rem;
       padding-top: 0.5rem;
+    }
+
+    .installSteps {
+      padding: 0.85rem 1rem;
+      margin-top: 0.65rem;
+      border-radius: 9px;
+      gap: 0.55rem;
+    }
+
+    .installSteps li {
+      padding-left: 1.25rem;
+    }
+
+    .installLabel {
+      font-size: 0.65rem;
+    }
+
+    .installCmd {
+      font-size: 0.7rem;
+      line-height: 1.45;
     }
 
     .platformList {
