@@ -12,6 +12,7 @@ const {
 } = Astro.props;
 const siteUrl = "https://leogardberg.xyz";
 const ogImage = `${siteUrl}/leo1.jpg`;
+const ogImageAlt = "Leo Gardberg with two Furhat social robots";
 ---
 
 <!doctype html>
@@ -28,12 +29,14 @@ const ogImage = `${siteUrl}/leo1.jpg`;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={ogImageAlt} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
     <link rel="canonical" href={siteUrl} />
     <link rel="icon" href="/shark-6-svgrepo-com.svg" type="image/svg+xml" />
