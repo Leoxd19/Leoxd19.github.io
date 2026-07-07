@@ -9,23 +9,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       src="/avatar.jpg"
       alt=""
       class="avatar"
+      width="56"
+      height="56"
       aria-hidden="true"
       data-srcs="/avatar.jpg,/avatar-2.jpg,/avatar-3.jpg"
     />
     <h1 class="name">Leo Gardberg</h1>
-    <p>currently @ <a href="https://furhatrobotics.com" target="_blank" class="logoLink"><img src="/furhatlogo.png" alt="Furhat Robotics" class="logo" /></a> — working with social robots</p>
-    <section class="builtSection" aria-label="Project">
-      <div class="pointer" aria-hidden="true">
-        <svg class="pointerChevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"/>
-        </svg>
-        <svg class="pointerChevron pointerChevronLag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"/>
-        </svg>
-      </div>
-
+    <p>currently @ <a href="https://furhatrobotics.com" target="_blank" rel="noopener" class="logoLink"><img src="/furhatlogo.png" alt="Furhat Robotics" class="logo" width="1808" height="504" /></a> — working with social robots</p>
+    <section class="builtSection" aria-label="Projects">
+      <h2 class="srOnly">Projects</h2>
       <article class="project">
-        <img src="/misty-connect-icon.png" alt="" class="appIcon" />
+        <img src="/misty-connect-icon.png" alt="" class="appIcon" width="1024" height="1024" />
         <h3 class="projectTitle">Misty Connect</h3>
         <span class="statusBadge" aria-label="Version 1.1.1">v1.1.1</span>
         <div class="projectMeta">
@@ -82,7 +76,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </article>
 
       <article class="project">
-        <img src="/furhatling-idle.gif" alt="Furhatling pet animation" class="appIcon furhatlingIcon" />
+        <img src="/furhatling-idle.gif" alt="Furhatling pet animation" class="appIcon furhatlingIcon" width="192" height="208" />
         <h3 class="projectTitle">Furhatling</h3>
         <span class="statusBadge" aria-label="Alpha released for testing, version 0.1">v0.1 · alpha testing</span>
         <div class="projectMeta">
@@ -109,23 +103,23 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <div class="previewBody">
             <figure class="previewItem">
               <figcaption class="previewLabel">idle</figcaption>
-              <img src="/furhatling-idle.gif" alt="Furhatling idle animation" class="previewGif" loading="lazy" />
+              <img src="/furhatling-idle.gif" alt="Furhatling idle animation" class="previewGif" width="192" height="208" loading="lazy" />
             </figure>
             <figure class="previewItem">
               <figcaption class="previewLabel">running</figcaption>
-              <img src="/furhatling-running.gif" alt="Furhatling running animation" class="previewGif" loading="lazy" />
+              <img src="/furhatling-running.gif" alt="Furhatling running animation" class="previewGif" width="192" height="208" loading="lazy" />
             </figure>
             <figure class="previewItem">
               <figcaption class="previewLabel">waiting</figcaption>
-              <img src="/furhatling-waiting.gif" alt="Furhatling waiting animation" class="previewGif" loading="lazy" />
+              <img src="/furhatling-waiting.gif" alt="Furhatling waiting animation" class="previewGif" width="192" height="208" loading="lazy" />
             </figure>
             <figure class="previewItem">
               <figcaption class="previewLabel">review</figcaption>
-              <img src="/furhatling-review.gif" alt="Furhatling review animation" class="previewGif" loading="lazy" />
+              <img src="/furhatling-review.gif" alt="Furhatling review animation" class="previewGif" width="192" height="208" loading="lazy" />
             </figure>
             <figure class="previewItem">
               <figcaption class="previewLabel">failed</figcaption>
-              <img src="/furhatling-failed.gif" alt="Furhatling failed animation" class="previewGif" loading="lazy" />
+              <img src="/furhatling-failed.gif" alt="Furhatling failed animation" class="previewGif" width="192" height="208" loading="lazy" />
             </figure>
           </div>
         </details>
@@ -155,7 +149,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </section>
 
     <figure class="photoFrame">
-      <img src="/leo1.jpg" alt="Leo with Furhat robots" class="photo" />
+      <img src="/leo1.jpg" alt="Leo with Furhat robots" class="photo" width="840" height="472" />
     </figure>
   </div>
 </BaseLayout>
@@ -281,33 +275,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     text-align: center;
   }
 
-  .pointer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 0.5rem;
-    gap: 2px;
-    height: 24px;
-  }
-
-  .pointerChevron {
-    width: 18px;
-    height: 18px;
-    opacity: 0.55;
-    animation: pointerPulse 1.8s ease-in-out infinite;
-  }
-
-  .pointerChevronLag {
-    margin-top: -10px;
-    opacity: 0.25;
-    animation-delay: 0.25s;
-  }
-
-  @keyframes pointerPulse {
-    0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(4px); }
-  }
-
   .project {
     display: flex;
     flex-direction: column;
@@ -351,11 +318,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     font-weight: 500;
     letter-spacing: 0.02em;
     text-wrap: balance;
-    background: #0a0a0a;
-    border: 1px solid #1f1f1f;
-    padding: 0.35rem 0.9rem;
-    border-radius: 8px;
-    display: inline-block;
   }
 
   /* Small status pill — sits under the title to signal release maturity. */
@@ -728,20 +690,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       margin-top: 0.5rem;
     }
 
-    .pointer {
-      height: 24px;
-      margin-bottom: 0.75rem;
-    }
-
-    .pointerChevron {
-      width: 16px;
-      height: 16px;
-    }
-
-    .pointerChevronLag {
-      margin-top: -9px;
-    }
-
     .project {
       gap: 0.4rem;
       padding: 1.1rem 0.9rem;
@@ -763,8 +711,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
     .projectTitle {
       font-size: 0.95rem;
-      padding: 0.3rem 0.75rem;
-      border-radius: 7px;
     }
 
     .projectMeta {
