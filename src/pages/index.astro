@@ -34,7 +34,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </span>
         </div>
         <p class="projectBlurb">
-          A Bluetooth Wi-Fi provisioning tool for the Misty II — a programmable robot from Misty Robotics, now part of Furhat Robotics.
+          Gets a Misty II onto your Wi-Fi over Bluetooth. Find the robot, send it your network credentials, and get back the IP it was assigned.
         </p>
         <details class="expand">
           <summary class="expandToggle">
@@ -78,7 +78,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <article class="project">
         <img src="/furhatling-idle.gif" alt="Furhatling pet animation" class="appIcon furhatlingIcon" width="192" height="208" />
         <h3 class="projectTitle">Furhatling</h3>
-        <span class="statusBadge" aria-label="Alpha released for testing, version 0.1">v0.1 · alpha testing</span>
+        <span class="statusBadge" aria-label="Version 0.1">v0.1</span>
         <div class="projectMeta">
           <a href="https://petdex.dev/" target="_blank" rel="noopener" class="techTagLink techPetdex">Petdex</a>
           <span class="techIcon techIconRaster" aria-label="Codex CLI" title="Codex">
@@ -89,9 +89,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </span>
         </div>
         <p class="projectBlurb">
-          A public alpha desktop companion pet for Petdex, inspired by the Furhat social robot. Released for testing with local Codex and Claude Code activity.
+          A desktop companion pet for Petdex, inspired by the Furhat social robot. It reacts to what your local Codex and Claude Code sessions are doing.
         </p>
-        <p class="roadmapNote"><em>Testing:</em> animation polish, clearer projected face details, and future face variants.</p>
         <details class="expand">
           <summary class="expandToggle">
             <span class="expandText" data-closed="preview" data-open="hide" aria-hidden="true"></span>
@@ -142,7 +141,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               <span class="platformName">Petdex</span>
             </span>
             <span class="platformDivider">—</span>
-            <a href="https://petdex.dev/" target="_blank" rel="noopener" class="platformLink platformPending">alpha testing on petdex.dev ↗</a>
+            <a href="https://petdex.dev/" target="_blank" rel="noopener" class="platformLink">install from petdex.dev ↗</a>
           </li>
         </ul>
       </article>
@@ -331,21 +330,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     border-radius: 999px;
     margin-top: -0.2rem;
     align-self: center;
-  }
-
-  /* One-line "what's coming" note under the blurb — italicized so it
-     reads as a forward-looking aside, not a current feature claim. */
-  .roadmapNote {
-    font-size: 0.78rem;
-    line-height: 1.55;
-    max-width: 36ch;
-    margin-top: 0.15rem;
-    text-wrap: balance;
-  }
-
-  .roadmapNote em {
-    font-style: italic;
-    letter-spacing: 0.04em;
   }
 
   .projectMeta {
@@ -656,10 +640,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
   .platformLink:hover {
     opacity: 0.7;
-  }
-
-  .platformPending {
-    font-style: italic;
   }
 
   @media (max-width: 480px) {
