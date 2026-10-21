@@ -40,7 +40,7 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
         </div>
         <p class="tagline">
           Working with social robots
-          <span class="atFurhat">at <a href="https://furhatrobotics.com" target="_blank" rel="noopener" class="logoLink"><span class="logo" role="img" aria-label="Furhat Robotics"></span></a></span>
+          <span class="atFurhat">@ <a href="https://furhatrobotics.com" target="_blank" rel="noopener" class="logoLink"><span class="logo" role="img" aria-label="Furhat Robotics"></span></a></span>
         </p>
         <!-- Peon icon by Kristiel (Hive Workshop, "BTNW3/1Peon Variants"). -->
         <p class="quote">
@@ -420,13 +420,18 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
     font-style: normal;
   }
 
-  /* "at" and the logo stay together, so on narrow screens the line
-     breaks at the natural pause instead of leaving "at" dangling. */
+  /* "@" and the logo stay together, so on narrow screens the line breaks
+     at the natural pause instead of leaving "@" dangling. The logo artwork
+     starts ~7% into its image, so it's pulled left to sit about one normal
+     space from the "@". */
   .atFurhat {
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
     white-space: nowrap;
+  }
+
+  .atFurhat .logoLink {
+    margin-left: -0.35rem;
   }
 
   .logoLink {
@@ -880,6 +885,11 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
   @media (max-width: 480px) {
     .logo {
       width: 128px;
+    }
+
+    /* The smaller logo has less built-in padding, so pull it less. */
+    .atFurhat .logoLink {
+      margin-left: -0.25rem;
     }
 
     .previewBody {
