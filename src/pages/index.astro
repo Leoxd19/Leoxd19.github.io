@@ -24,18 +24,20 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
 
     <main class="content">
       <header class="intro">
-        <!-- Avatar icons from Hive Workshop (hiveworkshop.com), by bigapple90, 67chrome, FrIkY, Sopho, Elf Knight-, Freezer, Scias, LoDown, Darkfang. -->
-        <span
-          id="avatar"
-          class="avatar"
-          aria-hidden="true"
-          title="Warcraft III icons by bigapple90, 67chrome, FrIkY, Sopho, Elf Knight-, Freezer, Scias, LoDown, Darkfang (Hive Workshop)"
-          data-srcs="/avatar-carrion-swarm.jpg,/avatar-sylvanas.jpg,/avatar-warglaive.jpg,/avatar-ninja.jpg,/avatar-rivendare.jpg,/avatar-electric-blizzard.jpg,/avatar-tyrande.jpg,/avatar-cultist-rogue.jpg,/avatar-rocket-boots.jpg,/avatar-frost-lich.jpg,/avatar-cultist-assassin.jpg"
-        >
-          <img src="/avatar-carrion-swarm.jpg" alt="" class="avatarLayer isTop" width="44" height="44" />
-          <img src="/avatar-sylvanas.jpg" alt="" class="avatarLayer" width="44" height="44" />
-        </span>
-        <h1 class="name">Leo Gardberg</h1>
+        <div class="nameRow">
+          <!-- Avatar icons from Hive Workshop (hiveworkshop.com), by bigapple90, 67chrome, FrIkY, Sopho, Elf Knight-, Freezer, Scias, LoDown, Darkfang. -->
+          <span
+            id="avatar"
+            class="avatar"
+            aria-hidden="true"
+            title="Warcraft III icons by bigapple90, 67chrome, FrIkY, Sopho, Elf Knight-, Freezer, Scias, LoDown, Darkfang (Hive Workshop)"
+            data-srcs="/avatar-carrion-swarm.jpg,/avatar-sylvanas.jpg,/avatar-warglaive.jpg,/avatar-ninja.jpg,/avatar-rivendare.jpg,/avatar-electric-blizzard.jpg,/avatar-tyrande.jpg,/avatar-cultist-rogue.jpg,/avatar-rocket-boots.jpg,/avatar-frost-lich.jpg,/avatar-cultist-assassin.jpg"
+          >
+            <img src="/avatar-carrion-swarm.jpg" alt="" class="avatarLayer isTop" width="44" height="44" />
+            <img src="/avatar-sylvanas.jpg" alt="" class="avatarLayer" width="44" height="44" />
+          </span>
+          <h1 class="name">Leo Gardberg</h1>
+        </div>
         <p class="tagline">
           currently @
           <a href="https://furhatrobotics.com" target="_blank" rel="noopener" class="logoLink"><span class="logo" role="img" aria-label="Furhat Robotics"></span></a>
@@ -322,11 +324,11 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
   .avatar {
     position: relative;
     display: block;
-    width: 44px;
-    height: 44px;
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     overflow: hidden;
-    margin-bottom: 0.4rem;
     cursor: pointer;
     transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -350,12 +352,12 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
     opacity: 1;
   }
 
-  /* Heading bands: the name and each project title sit on the same tab
+  /* Heading bands: the name row and each project title sit on the same tab
      of a deeper paper tone. On desktop every tab has one shared width
      (sized to the longest title row), so they line up as a set without
      running the full column; phones get full-width bands. Each band hangs
      into the gutter so its text still aligns with the text below. */
-  .name,
+  .nameRow,
   .projectHead {
     width: max-content;
     min-width: var(--band-w);
@@ -364,6 +366,14 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
     padding: 0.2rem 0.6rem;
     background: var(--band);
     border-radius: 3px;
+  }
+
+  /* Avatar and name share one band, like a profile chip, mirroring the
+     project rows (title + icon). */
+  .nameRow {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
   }
 
   /* Deliberately quiet: position and the avatar already mark this as the
@@ -769,7 +779,7 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
       gap: 0.15rem;
     }
 
-    .name,
+    .nameRow,
     .projectHead {
       padding-block: 0.1rem;
     }
@@ -780,9 +790,8 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
     }
 
     .avatar {
-      width: 32px;
-      height: 32px;
-      margin-bottom: 0.2rem;
+      width: 26px;
+      height: 26px;
     }
 
     .quote {
@@ -850,7 +859,7 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
     }
 
     /* Phones: bands and the animation panel run the full column. */
-    .name,
+    .nameRow,
     .projectHead {
       width: calc(100% + 1.2rem);
       min-width: 0;
