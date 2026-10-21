@@ -7,7 +7,8 @@
   --ink: #17130f;
   --ink-muted: #483f37;
   --rule: #9a8e82;
-  --band: #bfb4a7; /* one step into the aquatint, behind project titles */
+  --band: #bfb4a7; /* one step into the aquatint, behind the name and titles */
+  --panel: #e4ddd4; /* toward the print's highlights, behind the animations */
   --blue: #1f3fd1;
 
   --sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;

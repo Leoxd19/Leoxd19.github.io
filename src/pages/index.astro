@@ -300,6 +300,7 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
   /* Fits one screen on desktop: the whole column sits within the viewport
      height, vertically centred against the print. */
   .content {
+    --band-w: 22rem;
     display: flex;
     flex-direction: column;
     gap: clamp(1.25rem, 3vh, 3rem);
@@ -347,6 +348,22 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
 
   .avatarLayer.isTop {
     opacity: 1;
+  }
+
+  /* Heading bands: the name and each project title sit on the same tab
+     of a deeper paper tone. On desktop every tab has one shared width
+     (sized to the longest title row), so they line up as a set without
+     running the full column; phones get full-width bands. Each band hangs
+     into the gutter so its text still aligns with the text below. */
+  .name,
+  .projectHead {
+    width: max-content;
+    min-width: var(--band-w);
+    max-width: calc(100% + 1.2rem);
+    margin-inline: -0.6rem;
+    padding: 0.2rem 0.6rem;
+    background: var(--band);
+    border-radius: 3px;
   }
 
   /* Deliberately quiet: position and the avatar already mark this as the
@@ -420,7 +437,7 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
   .projects {
     display: flex;
     flex-direction: column;
-    gap: clamp(1rem, 2vh, 2rem);
+    gap: clamp(0.9rem, 1.7vh, 2rem);
   }
 
   .project {
@@ -430,20 +447,12 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
     gap: 0.35rem;
   }
 
-  /* Title, version and stack on one line: the project's identity row,
-     set on an identical full-width band of a deeper paper tone so the
-     projects read as matching headings. The band hangs into the gutter
-     (negative margin) so the title still lines up with the text below. */
+  /* Title, version and stack on one line: the project's identity row. */
   .projectHead {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 0.35rem 0.9rem;
-    width: calc(100% + 1.2rem);
-    margin-inline: -0.6rem;
-    padding: 0.25rem 0.6rem;
-    background: var(--band);
-    border-radius: 3px;
   }
 
   .projectTitle {
@@ -638,11 +647,20 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
   }
 
   /* Furhatling preview row — always visible, five state gifs, labeled. */
+  /* The animations play on a lighter panel: the GIFs' light anti-aliased
+     edges disappear against it (a darker tone would show them as halos),
+     and it frames the five states as one strip. Same width as the heading
+     bands, and it hangs into the gutter like them so the first GIF lines
+     up with the text. */
   .previewBody {
-    margin-block: 0.4rem 0.2rem;
     display: flex;
-    gap: 0.75rem;
-    max-width: 26rem;
+    gap: 0.5rem;
+    width: var(--band-w);
+    max-width: calc(100% + 1.2rem);
+    margin: 0.3rem -0.6rem 0.2rem;
+    padding: 0.35rem 0.6rem 0.3rem;
+    background: var(--panel);
+    border-radius: 3px;
   }
 
   .previewItem {
@@ -660,7 +678,7 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
   }
 
   .previewGif {
-    height: 64px;
+    height: 58px;
     width: auto;
     max-width: 100%;
     /* Source frames are 192×208; keep the ratio when max-width kicks in. */
@@ -718,7 +736,7 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
      rhythm so the column still fits in one screen. */
   @media (min-width: 768px) and (min-aspect-ratio: 1/1) and (max-height: 800px) {
     .content {
-      gap: 0.6rem;
+      gap: 0.5rem;
       padding-block: 0;
     }
 
@@ -726,8 +744,13 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
       gap: 0.15rem;
     }
 
+    .name,
     .projectHead {
-      padding-block: 0.15rem;
+      padding-block: 0.1rem;
+    }
+
+    .previewBody {
+      padding-block: 0.25rem 0.2rem;
     }
 
     .avatar {
@@ -758,7 +781,7 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
     }
 
     .previewGif {
-      height: 40px;
+      height: 36px;
     }
   }
 
@@ -801,6 +824,14 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
     .credit {
       position: static;
       text-align: center;
+    }
+
+    /* Phones: bands and the animation panel run the full column. */
+    .name,
+    .projectHead,
+    .previewBody {
+      width: calc(100% + 1.2rem);
+      min-width: 0;
     }
 
     .content {
