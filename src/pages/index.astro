@@ -25,6 +25,7 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
     <main class="content">
       <header class="intro">
         <div class="nameRow">
+          <h1 class="name">Leo Gardberg</h1>
           <!-- Avatar icons from Hive Workshop (hiveworkshop.com), by bigapple90, 67chrome, FrIkY, Sopho, Elf Knight-, Freezer, Scias, LoDown, Darkfang. -->
           <span
             id="avatar"
@@ -36,12 +37,10 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
             <img src="/avatar-carrion-swarm.jpg" alt="" class="avatarLayer isTop" width="44" height="44" />
             <img src="/avatar-sylvanas.jpg" alt="" class="avatarLayer" width="44" height="44" />
           </span>
-          <h1 class="name">Leo Gardberg</h1>
         </div>
         <p class="tagline">
-          currently @
-          <a href="https://furhatrobotics.com" target="_blank" rel="noopener" class="logoLink"><span class="logo" role="img" aria-label="Furhat Robotics"></span></a>
-          — working with social robots
+          Working with social robots
+          <span class="atFurhat">at <a href="https://furhatrobotics.com" target="_blank" rel="noopener" class="logoLink"><span class="logo" role="img" aria-label="Furhat Robotics"></span></a></span>
         </p>
         <!-- Peon icon by Kristiel (Hive Workshop, "BTNW3/1Peon Variants"). -->
         <p class="quote">
@@ -55,7 +54,7 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
 
         <article class="project">
           <header class="projectHead">
-            <h3 class="projectTitle">Misty Connect <span class="version">v1.1.1</span></h3>
+            <h3 class="projectTitle">Misty Connect</h3>
             <img src="/misty-connect-icon.png" alt="" class="appIcon" width="28" height="28" />
             <div class="projectMeta">
               <span class="techIcon techFlutter" role="img" aria-label="Flutter" title="Flutter">
@@ -98,7 +97,7 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
 
         <article class="project">
           <header class="projectHead">
-            <h3 class="projectTitle">Furhatling <span class="version">v0.1</span></h3>
+            <h3 class="projectTitle">Furhatling</h3>
             <div class="projectMeta">
               <span class="metaLabel">Petdex</span>
               <span class="techIcon" title="Codex"><img src="/codex-logo.png" alt="Codex CLI" width="40" height="40" /></span>
@@ -368,12 +367,12 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
     border-radius: 3px;
   }
 
-  /* Avatar and name share one band, like a profile chip, mirroring the
-     project rows (title + icon). */
+  /* Name then avatar on one band, in the same order and spacing as the
+     project rows (title, then icon), so all four bands read alike. */
   .nameRow {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.9rem;
   }
 
   /* Deliberately quiet: position and the avatar already mark this as the
@@ -421,6 +420,15 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
     font-style: normal;
   }
 
+  /* "at" and the logo stay together, so on narrow screens the line
+     breaks at the natural pause instead of leaving "at" dangling. */
+  .atFurhat {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    white-space: nowrap;
+  }
+
   .logoLink {
     display: inline-block;
     color: var(--ink);
@@ -457,7 +465,7 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
     gap: 0.35rem;
   }
 
-  /* Title, version and stack on one line: the project's identity row. */
+  /* Title and stack on one line: the project's identity row. */
   .projectHead {
     display: flex;
     align-items: center;
@@ -471,9 +479,8 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
     letter-spacing: -0.015em;
   }
 
-  /* Machine details (versions, toggles, labels) are set in mono, small and
-     muted: one consistent "label" voice under the sans reading voice. */
-  .version,
+  /* Machine details (toggles, labels) are set in mono, small and muted:
+     one consistent "label" voice under the sans reading voice. */
   .expandToggle,
   .previewLabel,
   .metaLabel {
@@ -482,11 +489,6 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
     font-weight: 500;
     letter-spacing: 0.04em;
     color: var(--ink-muted);
-  }
-
-  .version {
-    margin-left: 0.45rem;
-    vertical-align: 0.15em;
   }
 
   .projectMeta {
