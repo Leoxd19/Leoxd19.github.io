@@ -1,21 +1,37 @@
+/* Palette sampled from Goya's Capricho No. 43 (1799).
+   --paper is the cream of the inscribed desk panel; --ink and --ink-muted
+   are the plate's ink and aquatint, darkened and desaturated so text stays
+   well above WCAG AA (11.6:1 and 6.5:1) without drifting into sepia. */
+:root {
+  --paper: #d4ccc2;
+  --ink: #17130f;
+  --ink-muted: #483f37;
+  --rule: #9a8e82;
+  --blue: #1f3fd1;
+
+  --sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  color-scheme: light;
+}
+
 /* Minimal CSS reset */
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
 html {
-  background-color: #0a0a0a;
+  background-color: var(--paper);
 }
 
 body {
   margin: 0;
-  background: #0a0a0a;
-  color: #e8e8e8;
-  font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 16px;
-  line-height: 1.75;
-  letter-spacing: 0.01em;
-  font-weight: 400;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  font-weight: 500;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -29,28 +45,12 @@ button, input, select, textarea {
   font: inherit;
 }
 
-p, h1, h2, h3, h4, h5, h6 {
+p, h1, h2, h3, h4, h5, h6, figure {
   margin: 0;
 }
 
-h1 {
-  font-size: 28px;
-  font-weight: 500;
-}
-
-p {
-  font-weight: 400;
-  font-size: 1.2rem;
-}
-
-@media (max-width: 480px) {
-  h1 {
-    font-size: 1.4rem;
-  }
-
-  p {
-    font-size: 0.9rem;
-  }
+h1, h2, h3 {
+  font-weight: 600;
 }
 
 /* Respect users who've requested reduced motion at the OS level. */

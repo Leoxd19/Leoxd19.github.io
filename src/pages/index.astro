@@ -1,449 +1,546 @@
 ---
+import { Picture } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import goya from "../assets/goya-sleep-of-reason.jpg";
 ---
 
 <BaseLayout title="Leo Gardberg — working with social robots">
-  <div class="heroContent">
-    <img
-      id="avatar"
-      src="/avatar.jpg"
-      alt=""
-      class="avatar"
-      width="56"
-      height="56"
-      aria-hidden="true"
-      data-srcs="/avatar.jpg,/avatar-2.jpg,/avatar-3.jpg"
-    />
-    <h1 class="name">Leo Gardberg</h1>
-    <p>currently @ <a href="https://furhatrobotics.com" target="_blank" rel="noopener" class="logoLink"><img src="/furhatlogo.png" alt="Furhat Robotics" class="logo" width="1808" height="504" /></a> — working with social robots</p>
-    <section class="builtSection" aria-label="Projects">
-      <h2 class="srOnly">Projects</h2>
-      <article class="project">
-        <img src="/misty-connect-icon.png" alt="" class="appIcon" width="1024" height="1024" />
-        <h3 class="projectTitle">Misty Connect</h3>
-        <span class="statusBadge" aria-label="Version 1.1.1">v1.1.1</span>
-        <div class="projectMeta">
-          <span class="techIcon techFlutter" aria-label="Flutter">
-            <svg viewBox="0 0 24 24" fill="currentColor"><title>Flutter</title><path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.37zm.014 11.072L7.857 17.53l6.471 6.47H21.7l-6.46-6.468 6.46-6.46z"/></svg>
-          </span>
-          <span class="techIcon techIconRaster" aria-label="Dart" title="Dart">
-            <img src="/dart-logo.png" alt="" width="48" height="48" />
-          </span>
-          <span class="techIcon techBle" aria-label="Bluetooth Low Energy">
-            <svg viewBox="0 0 24 24" fill="currentColor"><title>Bluetooth</title><path d="M17.71 7.71L12 2h-1v7.59L6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 11 14.41V22h1l5.71-5.71-4.3-4.29 4.3-4.29zM13 5.83l1.88 1.88L13 9.59V5.83zm1.88 10.46L13 18.17v-3.76l1.88 1.88z"/></svg>
-          </span>
-        </div>
-        <p class="projectBlurb">
-          Gets a Misty II onto your Wi-Fi over Bluetooth. Find the robot, send it your network credentials, and get back the IP it was assigned.
-        </p>
-        <details class="expand">
-          <summary class="expandToggle">
-            <span class="expandText" data-closed="technical details" data-open="hide" aria-hidden="true"></span>
-            <svg class="expandChevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polyline points="6 9 12 15 18 9"/>
-            </svg>
-            <span class="srOnly">Toggle technical details</span>
-          </summary>
-          <ul class="expandBody">
-            <li>BLE discovery of nearby Misty II robots.</li>
-            <li>Custom GATT service to exchange Wi-Fi credentials and read back the assigned IP.</li>
-            <li>Pure-Dart protocol layer, fully unit-tested.</li>
-            <li>Local cache of seen robots for one-tap reconnects.</li>
-          </ul>
-        </details>
-        <ul class="platformList">
-          <li class="platformRow">
-            <span class="platformNameGroup">
-              <svg class="platformIcon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
-              </svg>
-              <span class="platformName">iOS</span>
-            </span>
-            <span class="platformDivider">—</span>
-            <a href="https://apps.apple.com/us/app/misty-connect/id6771731417" target="_blank" rel="noopener" class="platformLink">live on the App Store ↗</a>
-          </li>
-          <li class="platformRow">
-            <span class="platformNameGroup">
-              <svg class="platformIcon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M3.609 1.814L13.792 12 3.609 22.186a.996.996 0 01-.609-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 010 1.73l-2.808 1.626-2.499-2.491 2.5-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303L5.864 2.658z"/>
-              </svg>
-              <span class="platformName">Android</span>
-            </span>
-            <span class="platformDivider">—</span>
-            <a href="https://play.google.com/store/apps/details?id=com.furhat.misty_connect" target="_blank" rel="noopener" class="platformLink">live on Google Play ↗</a>
-          </li>
-        </ul>
-      </article>
+  <div class="page">
+    <figure class="plate">
+      <Picture
+        src={goya}
+        formats={["avif", "webp"]}
+        widths={[480, 720, 960, 1200, 1500, 1800]}
+        sizes="(max-width: 767px) 100vw, (max-aspect-ratio: 1/1) min(100vw, 34rem), 40vh"
+        quality={40}
+        loading="eager"
+        fetchpriority="high"
+        alt="Goya's etching The Sleep of Reason Produces Monsters: a man asleep at a desk inscribed with the title, while owls and bats rise behind him."
+      />
+      <figcaption class="credit">
+        Goya, <cite>El sueño de la razón produce monstruos</cite>, 1799
+      </figcaption>
+    </figure>
 
-      <article class="project">
-        <img src="/furhatling-idle.gif" alt="Furhatling pet animation" class="appIcon furhatlingIcon" width="192" height="208" />
-        <h3 class="projectTitle">Furhatling</h3>
-        <span class="statusBadge" aria-label="Version 0.1">v0.1</span>
-        <div class="projectMeta">
-          <a href="https://petdex.dev/" target="_blank" rel="noopener" class="techTagLink techPetdex">Petdex</a>
-          <span class="techIcon techIconRaster" aria-label="Codex CLI" title="Codex">
-            <img src="/codex-logo.png" alt="" width="40" height="40" />
-          </span>
-          <span class="techIcon techClaude" aria-label="Claude">
-            <svg viewBox="0 0 24 24" fill="currentColor"><title>Claude</title><path d="M4.709 15.955l4.72-2.647.08-.23-.08-.128H9.2l-.79-.048-2.698-.073-2.339-.097-2.266-.122-.571-.121L0 11.784l.055-.352.48-.321.686.06 1.52.103 2.278.158 1.652.097 2.449.255h.389l.055-.157-.134-.098-.103-.097-2.358-1.596-2.552-1.688-1.336-.972-.722-.491-.365-.462-.158-1.008.656-.722.881.06.225.061.893.686 1.908 1.476 2.491 1.833.365.304.146-.103.018-.073-.164-.274-1.355-2.448-1.446-2.49-.644-1.032-.17-.619a2.97 2.97 0 0 1-.104-.729L6.283.134 6.696 0l.996.134.42.364.62 1.414 1.002 2.229 1.555 3.03.456.898.243.832.091.255h.158V9.01l.128-1.706.237-2.095.23-2.695.08-.76.376-.91.747-.492.584.28.48.685-.067.444-.286 1.851-.559 2.903-.364 1.942h.212l.243-.242.985-1.306 1.652-2.064.73-.82.85-.904.547-.431h1.033l.76 1.129-.34 1.166-1.064 1.347-.881 1.142-1.263 1.7-.79 1.36.073.11.188-.02 2.856-.606 1.543-.28 1.841-.315.833.388.091.395-.328.807-1.969.486-2.309.462-3.439.813-.042.03.049.061 1.549.146.662.036h1.622l3.02.225.79.522.474.638-.079.485-1.215.62-1.64-.389-3.829-.91-1.312-.329h-.182v.11l1.093 1.068 2.006 1.81 2.509 2.33.127.578-.322.455-.34-.049-2.205-1.659-.851-.747-1.927-1.622h-.128v.17l.444.649 2.345 3.521.122 1.08-.17.353-.608.213-.668-.122-1.374-1.925-1.415-2.167-1.143-1.943-.14.08-.674 7.254-.316.37-.729.28-.607-.461-.322-.747.322-1.476.389-1.924.315-1.53.286-1.9.17-.632-.011-.042-.14.018-1.434 1.967-2.18 2.945-1.726 1.845-.414.164-.717-.37.067-.662.401-.589 2.388-3.036 1.44-1.882.93-1.086-.006-.158h-.055L4.132 18.56l-1.13.146-.487-.456.061-.746.231-.243 1.908-1.312z"/></svg>
-          </span>
-        </div>
-        <p class="projectBlurb">
-          A desktop companion pet for Petdex, inspired by the Furhat social robot. It reacts to what your local Codex and Claude Code sessions are doing.
+    <main class="content">
+      <header class="intro">
+        <!-- Avatar icons from Hive Workshop (hiveworkshop.com), by bigapple90, 67chrome, FrIkY, Sopho, Elf Knight-, Freezer, Scias, LoDown, Darkfang. -->
+        <img
+          id="avatar"
+          src="/avatar-carrion-swarm.jpg"
+          alt=""
+          class="avatar"
+          width="44"
+          height="44"
+          aria-hidden="true"
+          title="Warcraft III icons by bigapple90, 67chrome, FrIkY, Sopho, Elf Knight-, Freezer, Scias, LoDown, Darkfang (Hive Workshop)"
+          data-srcs="/avatar-carrion-swarm.jpg,/avatar-sylvanas.jpg,/avatar-warglaive.jpg,/avatar-ninja.jpg,/avatar-rivendare.jpg,/avatar-electric-blizzard.jpg,/avatar-tyrande.jpg,/avatar-cultist-rogue.jpg,/avatar-rocket-boots.jpg,/avatar-frost-lich.jpg,/avatar-cultist-assassin.jpg"
+        />
+        <h1 class="name">Leo Gardberg</h1>
+        <p class="tagline">
+          currently @
+          <a href="https://furhatrobotics.com" target="_blank" rel="noopener" class="logoLink"><span class="logo" role="img" aria-label="Furhat Robotics"></span></a>
+          — working with social robots
         </p>
-        <details class="expand">
-          <summary class="expandToggle">
-            <span class="expandText" data-closed="preview" data-open="hide" aria-hidden="true"></span>
-            <svg class="expandChevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polyline points="6 9 12 15 18 9"/>
-            </svg>
-            <span class="srOnly">Toggle preview images</span>
-          </summary>
+      </header>
+
+      <section class="projects" aria-label="Projects">
+        <h2 class="srOnly">Projects</h2>
+
+        <article class="project">
+          <header class="projectHead">
+            <h3 class="projectTitle">Misty Connect <span class="version">v1.1.1</span></h3>
+            <img src="/misty-connect-icon.png" alt="" class="appIcon" width="28" height="28" />
+            <div class="projectMeta">
+              <span class="techIcon techFlutter" role="img" aria-label="Flutter" title="Flutter">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.37zm.014 11.072L7.857 17.53l6.471 6.47H21.7l-6.46-6.468 6.46-6.46z"/></svg>
+              </span>
+              <span class="techIcon" title="Dart"><img src="/dart-logo.png" alt="Dart" width="48" height="48" /></span>
+              <span class="techIcon techBle" role="img" aria-label="Bluetooth Low Energy" title="Bluetooth Low Energy">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.71 7.71L12 2h-1v7.59L6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 11 14.41V22h1l5.71-5.71-4.3-4.29 4.3-4.29zM13 5.83l1.88 1.88L13 9.59V5.83zm1.88 10.46L13 18.17v-3.76l1.88 1.88z"/></svg>
+              </span>
+            </div>
+          </header>
+          <p class="projectBlurb">
+            Gets a Misty II onto your Wi-Fi over Bluetooth. Find the robot, send it your network credentials, and get back the IP it was assigned.
+          </p>
+          <p class="projectNote">
+            The official replacement for the removed Misty App, so owners of Misty II (built by Misty Robotics in Boulder, Colorado) can get their robots online for research, teaching or private use.
+          </p>
+          <details class="expand">
+            <summary class="expandToggle">
+              <span class="expandText" data-closed="technical details +" data-open="hide −" aria-hidden="true"></span>
+              <span class="srOnly">Toggle technical details</span>
+            </summary>
+            <ul class="expandBody">
+              <li>BLE discovery of nearby Misty II robots.</li>
+              <li>Custom GATT service to exchange Wi-Fi credentials and read back the assigned IP.</li>
+              <li>Pure-Dart protocol layer, fully unit-tested.</li>
+              <li>Local cache of seen robots for one-tap reconnects.</li>
+            </ul>
+          </details>
+          <!-- Official store badges, unmodified, per Apple's and Google's guidelines. -->
+          <div class="badges">
+            <a href="https://apps.apple.com/us/app/misty-connect/id6771731417" target="_blank" rel="noopener" class="badge">
+              <img src="/badge-app-store.svg" alt="Download on the App Store" width="120" height="40" />
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.furhat.misty_connect" target="_blank" rel="noopener" class="badge badgePlay">
+              <img src="/badge-google-play.png" alt="Get it on Google Play" width="154" height="60" />
+            </a>
+          </div>
+        </article>
+
+        <article class="project">
+          <header class="projectHead">
+            <h3 class="projectTitle">Furhatling <span class="version">v0.1</span></h3>
+            <div class="projectMeta">
+              <a href="https://petdex.dev/" target="_blank" rel="noopener" class="metaLink">Petdex</a>
+              <span class="techIcon" title="Codex"><img src="/codex-logo.png" alt="Codex CLI" width="40" height="40" /></span>
+              <span class="techIcon techClaude" role="img" aria-label="Claude" title="Claude">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.709 15.955l4.72-2.647.08-.23-.08-.128H9.2l-.79-.048-2.698-.073-2.339-.097-2.266-.122-.571-.121L0 11.784l.055-.352.48-.321.686.06 1.52.103 2.278.158 1.652.097 2.449.255h.389l.055-.157-.134-.098-.103-.097-2.358-1.596-2.552-1.688-1.336-.972-.722-.491-.365-.462-.158-1.008.656-.722.881.06.225.061.893.686 1.908 1.476 2.491 1.833.365.304.146-.103.018-.073-.164-.274-1.355-2.448-1.446-2.49-.644-1.032-.17-.619a2.97 2.97 0 0 1-.104-.729L6.283.134 6.696 0l.996.134.42.364.62 1.414 1.002 2.229 1.555 3.03.456.898.243.832.091.255h.158V9.01l.128-1.706.237-2.095.23-2.695.08-.76.376-.91.747-.492.584.28.48.685-.067.444-.286 1.851-.559 2.903-.364 1.942h.212l.243-.242.985-1.306 1.652-2.064.73-.82.85-.904.547-.431h1.033l.76 1.129-.34 1.166-1.064 1.347-.881 1.142-1.263 1.7-.79 1.36.073.11.188-.02 2.856-.606 1.543-.28 1.841-.315.833.388.091.395-.328.807-1.969.486-2.309.462-3.439.813-.042.03.049.061 1.549.146.662.036h1.622l3.02.225.79.522.474.638-.079.485-1.215.62-1.64-.389-3.829-.91-1.312-.329h-.182v.11l1.093 1.068 2.006 1.81 2.509 2.33.127.578-.322.455-.34-.049-2.205-1.659-.851-.747-1.927-1.622h-.128v.17l.444.649 2.345 3.521.122 1.08-.17.353-.608.213-.668-.122-1.374-1.925-1.415-2.167-1.143-1.943-.14.08-.674 7.254-.316.37-.729.28-.607-.461-.322-.747.322-1.476.389-1.924.315-1.53.286-1.9.17-.632-.011-.042-.14.018-1.434 1.967-2.18 2.945-1.726 1.845-.414.164-.717-.37.067-.662.401-.589 2.388-3.036 1.44-1.882.93-1.086-.006-.158h-.055L4.132 18.56l-1.13.146-.487-.456.061-.746.231-.243 1.908-1.312z"/></svg>
+              </span>
+            </div>
+          </header>
+          <p class="projectBlurb">
+            A desktop companion pet for Petdex, inspired by the Furhat social robot. It reacts to what your local Codex and Claude Code sessions are doing.
+          </p>
           <div class="previewBody">
             <figure class="previewItem">
-              <figcaption class="previewLabel">idle</figcaption>
               <img src="/furhatling-idle.gif" alt="Furhatling idle animation" class="previewGif" width="192" height="208" loading="lazy" />
+              <figcaption class="previewLabel">idle</figcaption>
             </figure>
             <figure class="previewItem">
-              <figcaption class="previewLabel">running</figcaption>
               <img src="/furhatling-running.gif" alt="Furhatling running animation" class="previewGif" width="192" height="208" loading="lazy" />
+              <figcaption class="previewLabel">running</figcaption>
             </figure>
             <figure class="previewItem">
-              <figcaption class="previewLabel">waiting</figcaption>
               <img src="/furhatling-waiting.gif" alt="Furhatling waiting animation" class="previewGif" width="192" height="208" loading="lazy" />
+              <figcaption class="previewLabel">waiting</figcaption>
             </figure>
             <figure class="previewItem">
-              <figcaption class="previewLabel">review</figcaption>
               <img src="/furhatling-review.gif" alt="Furhatling review animation" class="previewGif" width="192" height="208" loading="lazy" />
+              <figcaption class="previewLabel">review</figcaption>
             </figure>
             <figure class="previewItem">
-              <figcaption class="previewLabel">failed</figcaption>
               <img src="/furhatling-failed.gif" alt="Furhatling failed animation" class="previewGif" width="192" height="208" loading="lazy" />
+              <figcaption class="previewLabel">failed</figcaption>
             </figure>
           </div>
-        </details>
-        <ul class="platformList">
-          <li class="platformRow">
-            <span class="platformNameGroup">
-              <svg class="platformIcon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-              </svg>
-              <span class="platformName">Source</span>
-            </span>
-            <span class="platformDivider">—</span>
-            <a href="https://github.com/Leoxd19/furhatling-petdex" target="_blank" rel="noopener" class="platformLink">public repo ↗</a>
-          </li>
-          <li class="platformRow">
-            <span class="platformNameGroup">
-              <svg class="platformIcon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 1.5l-9 5.18v10.64L12 22.5l9-5.18V6.68L12 1.5zm6.39 5.39L12 10.34 5.61 6.89 12 3.32l6.39 3.57zM5 8.66l6 3.31v7.95l-6-3.31V8.66zm14 7.95l-6 3.31v-7.95l6-3.31v7.95z"/>
-              </svg>
-              <span class="platformName">Petdex</span>
-            </span>
-            <span class="platformDivider">—</span>
-            <a href="https://petdex.dev/" target="_blank" rel="noopener" class="platformLink">install from petdex.dev ↗</a>
-          </li>
-        </ul>
-      </article>
-    </section>
+          <p class="links">
+            <a href="https://github.com/Leoxd19/furhatling-petdex" target="_blank" rel="noopener">Source<span aria-hidden="true">&nbsp;↗</span></a>
+            <span class="sep" aria-hidden="true">·</span>
+            <a href="https://petdex.dev/" target="_blank" rel="noopener">petdex.dev<span aria-hidden="true">&nbsp;↗</span></a>
+          </p>
+        </article>
+        <article class="project">
+          <header class="projectHead">
+            <h3 class="projectTitle">Sudda mig</h3>
+            <!-- Sudd, the suddamig.se mascot (vector from that site, light theme colors) -->
+            <svg class="sudd" viewBox="0 0 140 110" role="img" aria-label="Sudd, the Sudda mig eraser mascot">
+              <g transform="rotate(-10 70 52)">
+                <rect x="14" y="22" width="112" height="62" rx="14" fill="#ffffff" stroke="#0b1220" stroke-width="5"/>
+                <path d="M28 22H62V84H28Q14 84 14 70V36Q14 22 28 22Z" fill="#2541e8" stroke="#0b1220" stroke-width="5" stroke-linejoin="round"/>
+                <line x1="62" y1="30" x2="62" y2="76" stroke="#0b1220" stroke-width="5"/>
+                <circle cx="84" cy="48" r="5.5" fill="#0b1220"/>
+                <circle cx="106" cy="48" r="5.5" fill="#0b1220"/>
+                <path d="M83 62Q95 71 107 62" fill="none" stroke="#0b1220" stroke-width="5" stroke-linecap="round"/>
+              </g>
+              <rect x="10" y="96" width="9" height="9" rx="2" fill="#2541e8" stroke="#0b1220" stroke-width="2.5"/>
+              <rect x="27" y="100" width="7" height="7" rx="2" fill="#ffffff" stroke="#0b1220" stroke-width="2.5"/>
+              <rect x="41" y="96" width="6" height="6" rx="2" fill="#2541e8" stroke="#0b1220" stroke-width="2.5"/>
+            </svg>
+          </header>
+          <p class="projectBlurb">
+            A free step-by-step guide to removing yourself from Swedish people-search sites like Ratsit, Hitta, MrKoll and Merinfo. No login, no tracking, no cookies.
+          </p>
+          <details class="expand">
+            <summary class="expandToggle">
+              <span class="expandText" data-closed="details +" data-open="hide −" aria-hidden="true"></span>
+              <span class="srOnly">Toggle details</span>
+            </summary>
+            <ul class="expandBody">
+              <li>Covers Ratsit, Hitta, MrKoll, Merinfo, Eniro, Birthday and more.</li>
+              <li>Progress is saved only in your own browser.</li>
+              <li>Counts total page views, nothing about the visitor.</li>
+            </ul>
+          </details>
+          <p class="links">
+            <a href="https://suddamig.se" target="_blank" rel="noopener">suddamig.se<span aria-hidden="true">&nbsp;↗</span></a>
+            <span class="sep" aria-hidden="true">·</span>
+            <a href="https://github.com/Leoxd19/suddamig" target="_blank" rel="noopener">Source<span aria-hidden="true">&nbsp;↗</span></a>
+          </p>
+        </article>
+      </section>
 
-    <figure class="photoFrame">
-      <img src="/leo1.jpg" alt="Leo with Furhat robots" class="photo" width="840" height="472" />
-    </figure>
+    </main>
   </div>
 </BaseLayout>
 
 <script>
-  // Avatar hover-cycle: rotate through Tyrande crop -> Tyrande wide -> Sylvanas.
-  // Preloads the alternates so the first cycle doesn't flash, and respects
-  // prefers-reduced-motion (just snaps to the next image once per hover).
+  // Avatar cycle through the Warcraft III icons listed in data-srcs. It runs
+  // on its own with a short fade between frames, pauses while the tab is
+  // hidden, and respects prefers-reduced-motion (no autoplay; a hover or tap
+  // steps to the next frame instead). Taps also step it on touch screens.
   const avatar = document.getElementById("avatar") as HTMLImageElement | null;
   if (avatar) {
     const sources = (avatar.dataset.srcs ?? "").split(",").filter(Boolean);
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const FRAME_MS = 2200;
+    const FADE_MS = 180;
     let i = 0;
     let timer: number | undefined;
 
-    // Preload the alternates so the first cycle paints instantly.
+    // Preload the alternates so every swap paints instantly.
     sources.slice(1).forEach((src) => {
       const img = new Image();
       img.src = src;
     });
 
-    const start = () => {
+    const next = () => {
+      i = (i + 1) % sources.length;
       if (reduceMotion) {
-        i = (i + 1) % sources.length;
         avatar.src = sources[i];
         return;
       }
-      timer = window.setInterval(() => {
-        i = (i + 1) % sources.length;
+      avatar.classList.add("fading");
+      window.setTimeout(() => {
         avatar.src = sources[i];
-      }, 650);
+        avatar.classList.remove("fading");
+      }, FADE_MS);
     };
 
-    const stop = () => {
+    const play = () => {
+      if (timer === undefined) timer = window.setInterval(next, FRAME_MS);
+    };
+
+    const pause = () => {
       if (timer !== undefined) {
         clearInterval(timer);
         timer = undefined;
       }
-      i = 0;
-      avatar.src = sources[0];
     };
 
-    avatar.addEventListener("mouseenter", start);
-    avatar.addEventListener("mouseleave", stop);
-    // Touch fallback: cycle once per tap.
-    avatar.addEventListener("touchstart", () => {
-      i = (i + 1) % sources.length;
-      avatar.src = sources[i];
-    }, { passive: true });
+    if (reduceMotion) {
+      avatar.addEventListener("mouseenter", next);
+    } else {
+      play();
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) pause();
+        else play();
+      });
+    }
+
+    // Touch: a tap steps to the next frame.
+    avatar.addEventListener("touchstart", next, { passive: true });
   }
 </script>
 
 <style>
-  .heroContent {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+  /* A centred, symmetric composition: print, gap and text column form one
+     block centred in the viewport, so the outer margins are equal. The
+     print is 60% of the viewport height at its own 2645:4000 ratio (never
+     cropped) and sits on the paper like a real impression of the
+     Caprichos, its centre level with the centre of the text. */
+  .page {
+    --plate-h: clamp(18rem, 60vh, 44rem);
+    --plate-h: clamp(18rem, 60dvh, 44rem);
+    --plate-w: calc(var(--plate-h) * 0.66125);
+    display: grid;
+    grid-template-columns: var(--plate-w) minmax(0, 46rem);
+    justify-content: center;
     align-items: center;
-    gap: 1.1rem;
-    text-align: center;
+    column-gap: clamp(3rem, 6vw, 7rem);
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding-inline: clamp(1.5rem, 4vw, 4rem);
   }
 
-  /* Circular profile avatar — Tyrande crop at rest, cycles through two
-     other Warcraft III shots (wider Tyrande, Sylvanas) on hover. */
+  /* The credit hangs below the print without counting toward its box, so
+     the image itself, not image + caption, is what gets centred. */
+  .plate {
+    position: relative;
+  }
+
+  /* <Picture> renders its own elements, outside this component's style
+     scope, hence :global(). */
+  .plate :global(picture) {
+    display: block;
+    height: var(--plate-h);
+  }
+
+  .plate :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Fits one screen on desktop: the whole column sits within the viewport
+     height, vertically centred against the print. */
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.75rem, 4.5vh, 3rem);
+    padding-block: clamp(0.75rem, 2.5vh, 2rem);
+  }
+
+  /* --- Intro ----------------------------------------------------- */
+
+  .intro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  /* Circular profile avatar: Warcraft III hero icons (Hive Workshop),
+     duotoned in the page's ink and paper so they read like the etching.
+     Starts on Carrion Swarm (bats) and cycles through the set on its own. */
   .avatar {
-    width: 56px;
-    height: 56px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     object-fit: cover;
-    border: 1px solid #1f1f1f;
-    margin-bottom: -0.3rem;
+    margin-bottom: 0.4rem;
     cursor: pointer;
     transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-                border-color 0.2s ease;
+                opacity 0.18s ease;
+  }
+
+  .avatar.fading {
+    opacity: 0;
   }
 
   .avatar:hover {
     transform: scale(1.08);
-    border-color: #3a3a3a;
   }
 
+  /* Deliberately quiet: position and the avatar already mark this as the
+     page's title, so size and weight don't have to shout. */
   .name {
-    font-size: 1.8rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
+    font-size: clamp(1.5rem, 1.3rem + 0.6vw, 1.75rem);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+  }
+
+  .tagline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.2rem 0.45rem;
+    color: var(--ink-muted);
   }
 
   .logoLink {
+    display: inline-block;
+    color: var(--ink);
     line-height: 0;
   }
 
+  /* The wordmark is a transparent mask filled with currentColor, so it
+     always matches the text ink instead of carrying its own black. The
+     artwork has generous built-in padding, hence the larger box. */
   .logo {
-    display: inline-block;
-    vertical-align: middle;
-    width: 140px;
-    height: auto;
-    opacity: 0.9;
-    filter: invert(1);
-  }
-
-  /* Intro photo — sits between the tagline and the project section. */
-  .photoFrame {
-    margin: 0;
-    width: min(280px, 75%);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
-  }
-
-  .photo {
     display: block;
-    width: 100%;
-    height: auto;
+    width: 150px;
+    aspect-ratio: 560 / 156;
+    margin-block: -0.4rem;
+    background: currentColor;
+    -webkit-mask: url("/furhat-logo-mask.png") center / contain no-repeat;
+    mask: url("/furhat-logo-mask.png") center / contain no-repeat;
   }
 
-  .builtSection {
-    width: min(520px, 100%);
-    margin-top: 0.25rem;
+  /* --- Projects -------------------------------------------------- */
+
+  /* Whitespace alone separates the projects: no cards, no rules. */
+  .projects {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    text-align: center;
+    gap: clamp(1.5rem, 3.5vh, 2.25rem);
   }
 
   .project {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  /* Title, version and stack on one line: the project's identity row. */
+  .projectHead {
+    display: flex;
     align-items: center;
-    gap: 0.55rem;
-    width: 100%;
-    max-width: 440px;
-    padding: 1.4rem 1.6rem;
-    background: #131313;
-    border: 1px solid #1f1f1f;
-    border-radius: 16px;
-    box-sizing: border-box;
-  }
-
-  .appIcon {
-    width: 60px;
-    height: 60px;
-    border-radius: 14px;
-    margin-bottom: 0.25rem;
-  }
-
-  /* The Furhatling preview is a transparent GIF (192×208 source). Sized
-     to its natural aspect (no forced square + object-fit) so Firefox /
-     Chromium / Safari all rasterize the same scale internally — avoids
-     a sub-pixel rendering difference where Firefox on Windows letterboxes
-     inside the box and then anti-aliases the edges differently. */
-  .furhatlingIcon {
-    width: 80px;
-    height: auto;
-    border-radius: 0;
-    margin-bottom: 0.1rem;
-    /* Force high-quality downsampling. Default (auto) lets Firefox on
-       Windows fall back to a cheaper averaging algorithm for animated
-       GIFs that visibly pixelates the smoothly-rendered character art. */
-    image-rendering: auto;
-    image-rendering: high-quality;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.9rem;
   }
 
   .projectTitle {
-    font-size: 1.1rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    text-wrap: balance;
+    font-size: 1.3rem;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
   }
 
-  /* Small status pill — sits under the title to signal release maturity. */
-  .statusBadge {
-    font-size: 0.6rem;
+  /* Machine details (versions, toggles, labels) are set in mono, small and
+     muted: one consistent "label" voice under the sans reading voice. */
+  .version,
+  .expandToggle,
+  .previewLabel,
+  .metaLink {
+    font-family: var(--mono);
+    font-size: 0.75rem;
     font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    padding: 0.12rem 0.55rem;
-    border: 1px solid rgba(232, 232, 232, 0.25);
-    border-radius: 999px;
-    margin-top: -0.2rem;
-    align-self: center;
+    letter-spacing: 0.04em;
+    color: var(--ink-muted);
+  }
+
+  .version {
+    margin-left: 0.45rem;
+    vertical-align: 0.15em;
   }
 
   .projectMeta {
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 0.9rem;
-    flex-wrap: wrap;
-    min-height: 22px;
-    color: rgba(232, 232, 232, 0.85);
+    gap: 0.7rem;
   }
 
-  /* Icon-style tag — used when the tech has a recognized logo. */
   .techIcon {
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
     line-height: 0;
-    transition: transform 0.18s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.15s ease;
-    opacity: 0.92;
   }
 
   .techIcon svg {
-    width: 16px;
-    height: 16px;
-    display: block;
+    width: 17px;
+    height: 17px;
   }
 
-  /* Raster brand mark (multi-color PNG/WebP) — sits at the same optical
-     height as the SVG icons. Slightly larger to compensate for the visual
-     padding inside the artwork. */
-  .techIconRaster img {
-    width: 22px;
-    height: 22px;
-    display: block;
+  .techIcon img {
+    width: 19px;
+    height: 19px;
     object-fit: contain;
   }
 
-  .techIcon:hover {
-    opacity: 1;
-    transform: translateY(-1px);
+  /* Brand colors, each the brand's own darker shade (or deepened just
+     enough) to clear 3:1 against the paper. Raster logos keep their art. */
+  .techFlutter { color: #02569b; }
+  .techBle     { color: #0a5bc4; }
+  .techClaude  { color: #a94e2f; }
+
+  /* App icon artwork is square; the store applies the rounded mask, so we
+     round it the same way (~22% radius, like iOS) to read as an app icon. */
+  .appIcon {
+    width: 28px;
+    height: 28px;
+    border-radius: 22%;
   }
 
-  /* Brand-colored fill for monochrome SVG icons (currentColor). Raster
-     PNGs (Dart, Codex) carry their own colors and don't need these. */
-  .techFlutter { color: #54C5F8; }
-  .techBle     { color: #4DA9FF; }
-  .techPetdex  { color: #F2A65A; }
-  .techClaude  { color: #E07B53; }
-
-  /* Petdex tag becomes a brand-colored chip so it carries the same visual
-     weight as the colored icons next to it. */
-  .techTagLink {
-    color: #F2A65A;
-    text-decoration: none;
-    padding: 0.2rem 0.6rem;
-    border: 1px solid rgba(242, 166, 90, 0.5);
-    border-radius: 999px;
-    line-height: 1.1;
-    background: rgba(242, 166, 90, 0.06);
-    transition: background 0.15s ease, border-color 0.15s ease,
-                transform 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  .sudd {
+    width: 34px;
+    height: auto;
+    overflow: visible;
   }
 
-  .techTagLink:hover {
-    background: rgba(242, 166, 90, 0.14);
-    border-color: rgba(242, 166, 90, 0.85);
-    transform: translateY(-1px);
-  }
-
+  /* Descriptions use the full column width (~70–80 characters on desktop)
+     with plain greedy wrapping: no ch cap and no text-wrap: pretty, both of
+     which broke lines early and left short, ragged lines. */
   .projectBlurb {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-top: 0.2rem;
-    max-width: 36ch;
-    text-wrap: balance;
+    max-width: none;
   }
+
+  /* Background context, quieter than the description it follows. */
+  .projectNote {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--ink-muted);
+  }
+
+  /* --- Links ------------------------------------------------------ */
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.6rem;
+    margin-top: 0.15rem;
+  }
+
+  .links a,
+  .metaLink {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--rule);
+    text-underline-offset: 0.25em;
+    transition: text-decoration-color 0.15s ease;
+  }
+
+  /* Petdex keeps a hint of its amber, deepened to 5.2:1 for text. */
+  .metaLink {
+    color: #774209;
+  }
+
+  .links a:hover,
+  .metaLink:hover {
+    text-decoration-color: currentColor;
+  }
+
+  .sep {
+    color: var(--rule);
+  }
+
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.3rem;
+  }
+
+  .badge {
+    display: block;
+    line-height: 0;
+    border-radius: 7px;
+    transition: opacity 0.15s ease;
+  }
+
+  .badge:hover {
+    opacity: 0.85;
+  }
+
+  .badge img {
+    height: 40px;
+    width: auto;
+  }
+
+  /* Google's PNG ships with transparent clear space (41 of 250px on each
+     side). Size it so the visible badge matches Apple's 40px, then pull the
+     padding back so both badges line up. */
+  .badgePlay img {
+    height: 59.5px;
+    margin: -9.75px;
+  }
+
+  /* --- Expand panels -------------------------------------------- */
 
   .expand {
-    margin-top: 0.2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 100%;
-    text-align: center;
-  }
-
-  .expand[open] {
-    margin-top: 0.4rem;
   }
 
   .expandToggle {
     list-style: none;
     cursor: pointer;
     user-select: none;
-    padding: 0.4rem 0.85rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.45rem;
-    background: #0a0a0a;
-    border: 1px solid #1f1f1f;
-    border-radius: 999px;
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    display: inline-block;
+    padding-block: 0.2rem;
+    transition: color 0.15s ease;
   }
 
   .expandToggle::-webkit-details-marker {
     display: none;
+  }
+
+  .expandToggle:hover {
+    color: var(--ink);
   }
 
   .expandText::before {
@@ -454,44 +551,83 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     content: attr(data-open);
   }
 
-  .expandChevron {
-    width: 12px;
-    height: 12px;
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Opened details read in a bright-but-dark blue (4.9:1 on the paper),
+     setting them apart from the always-visible ink text. */
+  .expandBody {
+    color: var(--blue);
+    margin: 0.6rem 0 0.25rem;
+    padding: 0 0 0 1rem;
+    border-left: 1px solid var(--rule);
+    list-style: none;
   }
 
-  .expand[open] .expandChevron {
-    transform: rotate(180deg);
+  .expandBody li + li {
+    margin-top: 0.35rem;
   }
 
-  .expandToggle:hover {
-    background: #161616;
-    border-color: #2a2a2a;
+  /* Furhatling preview row — always visible, five state gifs, labeled. */
+  .previewBody {
+    margin-block: 0.4rem 0.2rem;
+    display: flex;
+    gap: 0.75rem;
+    max-width: 26rem;
   }
 
-  .expandToggle:active {
-    transform: scale(0.97);
+  .previewItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    flex: 1 1 0;
+    min-width: 0;
   }
+
+  .previewLabel {
+    font-size: 0.6875rem;
+    color: var(--blue);
+  }
+
+  .previewGif {
+    height: 64px;
+    width: auto;
+    max-width: 100%;
+    /* Source frames are 192×208; keep the ratio when max-width kicks in. */
+    aspect-ratio: 192 / 208;
+    /* Force high-quality downsampling — Firefox on Windows otherwise uses
+       a cheaper filter for animated GIFs that pixelates the character. */
+    image-rendering: auto;
+    image-rendering: high-quality;
+  }
+
+  /* --- Credit ----------------------------------------------------- */
+
+  /* Wall label under the print: same width, small, muted. */
+  .credit {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding-top: 0.5rem;
+    font-size: 0.6875rem;
+    line-height: 1.4;
+    color: var(--ink-muted);
+  }
+
+  .credit cite {
+    font-style: normal;
+  }
+
+  /* --- Focus & utilities ----------------------------------------- */
 
   /* Keyboard-only focus rings — invisible to mouse users. */
   .expandToggle:focus-visible,
-  .platformLink:focus-visible,
-  .logoLink:focus-visible,
-  .techTagLink:focus-visible {
-    outline: 2px solid #e8e8e8;
-    outline-offset: 3px;
-  }
-
-  .expandToggle:focus-visible {
-    border-radius: 999px;
-  }
-
-  .platformLink:focus-visible {
-    border-radius: 4px;
-  }
-
+  .badge:focus-visible,
+  .links a:focus-visible,
+  .metaLink:focus-visible,
   .logoLink:focus-visible {
-    border-radius: 4px;
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+    border-radius: 2px;
   }
 
   .srOnly {
@@ -506,268 +642,89 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     border: 0;
   }
 
-  .expandBody {
-    margin: 0.85rem auto 0;
-    padding: 1rem 1.2rem;
-    padding-inline-start: 1.2rem;
-    padding-inline-end: 1.2rem;
-    font-size: 0.88rem;
-    line-height: 1.6;
-    width: min(38ch, 100%);
-    box-sizing: border-box;
-    background: #0a0a0a;
-    border: 1px solid #1f1f1f;
-    border-radius: 10px;
-    text-align: center;
-    text-wrap: pretty;
-    list-style: none;
-  }
-
-  .expandBody li {
-    margin: 0;
-    padding: 0;
-  }
-
-  .expandBody li + li {
-    margin-top: 0.6rem;
-    padding-top: 0.6rem;
-    border-top: 1px solid #1a1a1a;
-  }
-
-  /* Furhatling preview row — five state gifs, labeled, no chrome.
-     The card itself is the surface; the gifs sit directly on it. */
-  .previewBody {
-    margin: 0.95rem 0 0;
-    width: 100%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 0.5rem;
-  }
-
-  .previewItem {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.45rem;
-    flex: 1 1 0;
-    min-width: 0;
-  }
-
-  /* Each state label gets a small pill backdrop matching the title-pill
-     aesthetic — same #0a0a0a fill, same hairline border, same rounded
-     shape — so labels read as "tagged" rather than floating text. Full
-     opacity (#e8e8e8) on the text gives clean contrast against the dark
-     fill instead of the faded look they had before. */
-  .previewLabel {
-    font-size: 0.58rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #e8e8e8;
-    background: #0a0a0a;
-    border: 1px solid #1f1f1f;
-    padding: 0.15rem 0.5rem;
-    border-radius: 999px;
-    line-height: 1.2;
-  }
-
-  .previewGif {
-    height: 72px;
-    width: auto;
-    max-width: 100%;
-    display: block;
-    /* Source frames are 192×208 (Petdex sprite atlas natural size).
-       Setting the aspect ratio explicitly means if max-width kicks
-       in on a narrow device, the gif scales down both dimensions
-       together instead of squishing into a distorted box. */
-    aspect-ratio: 192 / 208;
-    /* Same Firefox-on-Windows rationale as .furhatlingIcon: force
-       high-quality downsampling for animated GIFs. */
-    image-rendering: auto;
-    image-rendering: high-quality;
-  }
-
-
-  .platformList {
-    margin: 0.5rem 0 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    font-size: 0.85rem;
-  }
-
-  .platformRow {
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .platformNameGroup {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    min-width: 5.2rem;
-    justify-content: flex-end;
-  }
-
-  .platformIcon {
-    width: 0.95em;
-    height: 0.95em;
-    flex-shrink: 0;
-  }
-
-  .platformName {
-    letter-spacing: 0.05em;
-  }
-
-  .platformDivider {
-    opacity: 0.4;
-  }
-
-  .platformLink {
-    color: #e8e8e8;
-    text-decoration: none;
-    border-bottom: 1px solid #e8e8e8;
-    padding-bottom: 1px;
-    transition: opacity 0.15s ease;
-  }
-
-  .platformLink:hover {
-    opacity: 0.7;
-  }
-
-  @media (max-width: 480px) {
-    .heroContent {
-      gap: 0.75rem;
+  /* Short landscape screens (e.g. 1280×720 laptops): tighten the vertical
+     rhythm so the column still fits in one screen. */
+  @media (min-width: 768px) and (min-aspect-ratio: 1/1) and (max-height: 800px) {
+    .content {
+      gap: 1rem;
+      padding-block: 0.25rem;
     }
 
     .avatar {
-      width: 44px;
-      height: 44px;
-      margin-bottom: -0.2rem;
+      width: 32px;
+      height: 32px;
+      margin-bottom: 0.2rem;
     }
 
-    .name {
-      font-size: 1.2rem;
-    }
-
-    .logo {
-      width: 90px;
-    }
-
-    .photoFrame {
-      width: min(220px, 70%);
-      border-radius: 10px;
-    }
-
-    .builtSection {
-      margin-top: 0.5rem;
+    .projects {
+      gap: 0.85rem;
     }
 
     .project {
-      gap: 0.4rem;
-      padding: 1.1rem 0.9rem;
-      border-radius: 12px;
-      width: 100%;
-    }
-
-    .appIcon {
-      width: 48px;
-      height: 48px;
-      border-radius: 11px;
-      margin-bottom: 0.1rem;
-    }
-
-    .furhatlingIcon {
-      width: 66px;
-      height: auto;
-    }
-
-    .projectTitle {
-      font-size: 0.95rem;
-    }
-
-    .projectMeta {
-      font-size: 0.65rem;
-      gap: 0.7rem;
-      min-height: 18px;
-    }
-
-    .techIcon svg {
-      width: 14px;
-      height: 14px;
-    }
-
-    .techIconRaster img {
-      width: 19px;
-      height: 19px;
-    }
-
-    .techTagLink {
-      padding: 0.15rem 0.5rem;
+      gap: 0.2rem;
     }
 
     .projectBlurb {
-      font-size: 0.85rem;
       line-height: 1.55;
-      margin-top: 0.05rem;
-    }
-
-    .expandToggle {
-      padding: 0.35rem 0.75rem;
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      gap: 0.4rem;
-    }
-
-    .expandChevron {
-      width: 11px;
-      height: 11px;
-    }
-
-    .expandBody {
-      font-size: 0.8rem;
-      line-height: 1.55;
-      margin-top: 0.65rem;
-      padding: 0.85rem 1rem;
-      border-radius: 9px;
-    }
-
-    .expandBody li + li {
-      margin-top: 0.5rem;
-      padding-top: 0.5rem;
-    }
-
-    .previewBody {
-      gap: 0.35rem;
-      margin-top: 0.8rem;
     }
 
     .previewGif {
-      height: 56px;
+      height: 44px;
+    }
+  }
+
+  /* --- Stacked layout: phones and portrait screens ---------------- */
+
+  /* In portrait the side column would crop the plate heavily, so the
+     print moves on top as a 3:2 slice of its lower half: the sleeper and
+     the inscribed desk, inset by the same gutter as the text. */
+  @media (max-width: 767px), (max-aspect-ratio: 1/1) {
+    .page {
+      grid-template-columns: minmax(0, 1fr);
+      justify-content: stretch;
+      /* Don't let min-height stretch the image row on tall screens. */
+      align-content: start;
+      align-items: start;
+      padding-inline: clamp(1rem, 5vw, 2.5rem);
     }
 
-    .previewLabel {
-      font-size: 0.5rem;
-      letter-spacing: 0.08em;
-      padding: 0.1rem 0.4rem;
+    .plate {
+      padding-top: clamp(1rem, 5vw, 2.5rem);
     }
 
-    .platformList {
-      font-size: 0.78rem;
-      gap: 0.25rem;
-      margin-top: 0.4rem;
+    /* Width drives the size here, via the 3:2 ratio. */
+    .plate :global(picture) {
+      width: 100%;
+      max-width: 34rem;
+      height: auto;
+      aspect-ratio: 3 / 2;
     }
 
-    .platformNameGroup {
-      min-width: 4.6rem;
-      gap: 0.3rem;
+    .plate :global(img) {
+      object-position: 30% 100%;
+    }
+
+    .credit {
+      position: static;
+    }
+
+    .content {
+      gap: 2.5rem;
+      padding-block: 2rem 3rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .logo {
+      width: 128px;
+    }
+
+    .previewBody {
+      gap: 0.4rem;
+    }
+
+    .previewGif {
+      height: 52px;
     }
   }
 </style>
