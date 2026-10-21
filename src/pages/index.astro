@@ -268,10 +268,13 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
     height: var(--plate-h);
   }
 
+  /* A barely-there radius: real etching plates have their corners filed
+     round so they don't cut the paper, which softens the plate mark. */
   .plate :global(img) {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 3px;
   }
 
   /* Fits one screen on desktop: the whole column sits within the viewport
@@ -702,6 +705,7 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
 
     .plate :global(img) {
       object-position: 30% 100%;
+      border-radius: 2px;
     }
 
     .credit {
