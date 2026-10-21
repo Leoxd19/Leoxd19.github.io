@@ -380,7 +380,7 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
     flex-wrap: wrap;
     align-items: center;
     gap: 0.2rem 0.45rem;
-    color: var(--ink-muted);
+    color: var(--ink);
   }
 
   /* The peon's line, as a small aside to "working with social robots". The
@@ -588,9 +588,12 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
 
   /* Google's PNG ships with transparent clear space (41 of 250px on each
      side). Size it so the visible badge matches Apple's 40px, then pull the
-     padding back so both badges line up. */
+     padding back so both badges line up. max-width: none is needed: the
+     link shrinks to the image minus those negative margins, and the global
+     max-width: 100% would then squeeze the image ~13% narrower. */
   .badgePlay img {
     height: 59.5px;
+    max-width: none;
     margin: -9.75px;
   }
 
