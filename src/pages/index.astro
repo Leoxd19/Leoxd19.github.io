@@ -368,11 +368,14 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
   }
 
   /* Name then avatar on one band, in the same order and spacing as the
-     project rows (title, then icon), so all four bands read alike. */
+     project rows (title, then icon), so all four bands read alike. Only
+     its colours differ (inverted), marking it as the page's title. */
   .nameRow {
     display: flex;
     align-items: center;
     gap: 0.9rem;
+    background: var(--band-name);
+    color: var(--paper);
   }
 
   /* Deliberately quiet: position and the avatar already mark this as the

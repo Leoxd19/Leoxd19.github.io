@@ -7,9 +7,12 @@
   --ink: #17130f;
   --ink-muted: #483f37;
   --rule: #9a8e82;
-  --band: #bfb4a7; /* one step into the aquatint, behind the name and titles */
+  --band: #bfb4a7; /* one step into the aquatint, behind the project titles */
   --puddle: #ada194; /* between the band and the aquatint, under the animations */
   --blue: #1f3fd1;
+  /* The name's band is inverted, aquatint with paper-coloured text, so the
+     page's title stands apart from the project bands. */
+  --band-name: var(--ink-muted);
 
   /* Two corner sizes for the whole page: --radius for the heading bands,
      --radius-sm for small or image-sized things inside them. */
