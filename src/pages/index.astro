@@ -37,6 +37,10 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
             <img src="/avatar-carrion-swarm.jpg" alt="" class="avatarLayer isTop" width="44" height="44" />
             <img src="/avatar-sylvanas.jpg" alt="" class="avatarLayer" width="44" height="44" />
           </span>
+          <!-- Things I like, as small "emoji". Frostsaber: World of Warcraft's Winterspring Frostsaber mount icon (Blizzard). -->
+          <span class="traits">
+            <img src="/trait-frostsaber.jpg" alt="Frostsaber" title="Frostsaber" class="trait" width="56" height="56" />
+          </span>
         </div>
         <p class="tagline">
           Working with social robots
@@ -349,6 +353,20 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
 
   .avatarLayer.isTop {
     opacity: 1;
+  }
+
+  /* Personal "emoji" after the avatar: same circle and duotone, so they
+     read as one set, but they stay still while the avatar cycles. */
+  .traits {
+    display: flex;
+    gap: 0.35rem;
+  }
+
+  .trait {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
   }
 
   /* Heading bands: the name row and each project title sit on the same tab
@@ -799,7 +817,8 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
       margin-top: 0.3rem;
     }
 
-    .avatar {
+    .avatar,
+    .trait {
       width: 26px;
       height: 26px;
     }
