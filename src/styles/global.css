@@ -11,6 +11,11 @@
   --puddle: #ada194; /* between the band and the aquatint, under the animations */
   --blue: #1f3fd1;
 
+  /* Two corner sizes for the whole page: --radius for the heading bands,
+     --radius-sm for small or image-sized things inside them. */
+  --radius: 8px;
+  --radius-sm: 4px;
+
   --sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
