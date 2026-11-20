@@ -2,6 +2,32 @@
 import { Picture } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import goya from "../assets/goya-sleep-of-reason.jpg";
+
+// The portrait above the name fades through these, in this order. Warcraft III icons from Hive
+// Workshop (hiveworkshop.com), by bigapple90, 67chrome, FrIkY, Sopho,
+// Elf Knight-, Freezer, Scias, LoDown and Darkfang, duotoned in the page's
+// ink and paper so they read like the etching.
+const portraits = [
+  ["carrion-swarm", "Carrion Swarm"],
+  ["sylvanas", "Sylvanas"],
+  ["warglaive", "Warglaive"],
+  ["ninja", "Ninja"],
+  ["rivendare", "Rivendare"],
+  ["electric-blizzard", "Electric Blizzard"],
+  ["tyrande", "Tyrande"],
+  ["cultist-rogue", "Cultist Rogue"],
+  ["rocket-boots", "Rocket Boots"],
+  ["frost-lich", "Frost Lich"],
+  ["cultist-assassin", "Cultist Assassin"],
+].map(([slug, name]) => ({ src: `/avatar-${slug}.jpg`, name }));
+
+// On the details sheet: a keyword and one line each.
+const details = [
+  ["BLE", "Discovers nearby Misty II robots."],
+  ["GATT", "A custom service exchanges Wi-Fi credentials and reads back the assigned IP."],
+  ["Dart", "Pure-Dart protocol layer, fully unit-tested."],
+  ["Cache", "Remembers the robots it has seen, for one-tap reconnects."],
+];
 ---
 
 <BaseLayout title="Leo Gardberg — working with social robots">
@@ -17,29 +43,34 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
         fetchpriority="high"
         alt="Goya's etching The Sleep of Reason Produces Monsters: a man asleep at a desk inscribed with the title, while owls and bats rise behind him."
       />
-      <figcaption class="credit">
+      <figcaption class="credit glass">
         Goya, <cite>El sueño de la razón produce monstruos</cite>, 1799
       </figcaption>
     </figure>
 
     <main class="content">
       <header class="intro">
-        <div class="nameRow">
+        <!-- The portrait: one icon at a time on a small glass tile, slowly
+             fading to the next. A click or tap moves it on. It is
+             decoration, so it is hidden from screen readers and skipped by
+             the Tab key. -->
+        <button
+          type="button"
+          id="portrait"
+          class="portrait glass"
+          tabindex="-1"
+          aria-hidden="true"
+          data-srcs={portraits.map((icon) => icon.src).join(",")}
+        >
+          <img src={portraits[0].src} alt="" class="portraitLayer isTop" width="56" height="56" />
+          <img src={portraits[1].src} alt="" class="portraitLayer" width="56" height="56" />
+        </button>
+
+        <div class="nameLine">
           <h1 class="name">Leo Gardberg</h1>
-          <!-- Avatar icons from Hive Workshop (hiveworkshop.com), by bigapple90, 67chrome, FrIkY, Sopho, Elf Knight-, Freezer, Scias, LoDown, Darkfang. -->
-          <span
-            id="avatar"
-            class="avatar"
-            aria-hidden="true"
-            title="Warcraft III icons by bigapple90, 67chrome, FrIkY, Sopho, Elf Knight-, Freezer, Scias, LoDown, Darkfang (Hive Workshop)"
-            data-srcs="/avatar-carrion-swarm.jpg,/avatar-sylvanas.jpg,/avatar-warglaive.jpg,/avatar-ninja.jpg,/avatar-rivendare.jpg,/avatar-electric-blizzard.jpg,/avatar-tyrande.jpg,/avatar-cultist-rogue.jpg,/avatar-rocket-boots.jpg,/avatar-frost-lich.jpg,/avatar-cultist-assassin.jpg"
-          >
-            <img src="/avatar-carrion-swarm.jpg" alt="" class="avatarLayer isTop" width="44" height="44" />
-            <img src="/avatar-sylvanas.jpg" alt="" class="avatarLayer" width="44" height="44" />
-          </span>
           <!-- Things I like, as small "emoji". Frostsaber: World of Warcraft's Winterspring Frostsaber mount icon (Blizzard). -->
           <span class="traits">
-            <img src="/trait-frostsaber.jpg" alt="Frostsaber" title="Frostsaber" class="trait" width="56" height="56" />
+            <span class="trait glass"><img src="/trait-frostsaber.jpg" alt="Frostsaber" width="56" height="56" /></span>
           </span>
         </div>
         <p class="tagline">
@@ -48,7 +79,7 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
         </p>
         <!-- Peon icon by Kristiel (Hive Workshop, "BTNW3/1Peon Variants"). -->
         <p class="quote">
-          <img src="/peon.jpg" alt="" class="quoteIcon" width="24" height="24" title="Peon icon by Kristiel (Hive Workshop)" />
+          <img src="/peon.jpg" alt="" class="quoteIcon" width="24" height="24" />
           <span><q>Work work.</q> <span class="quoteBy">— Peon, <cite>Warcraft III</cite> (2002)</span></span>
         </p>
       </header>
@@ -58,36 +89,12 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
 
         <article class="project">
           <header class="projectHead">
+            <img src="/misty-connect-icon.png" alt="" class="appIcon" width="40" height="40" />
             <h3 class="projectTitle">Misty Connect</h3>
-            <img src="/misty-connect-icon.png" alt="" class="appIcon" width="28" height="28" />
-            <div class="projectMeta">
-              <span class="techIcon techFlutter" role="img" aria-label="Flutter" title="Flutter">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.37zm.014 11.072L7.857 17.53l6.471 6.47H21.7l-6.46-6.468 6.46-6.46z"/></svg>
-              </span>
-              <span class="techIcon" title="Dart"><img src="/dart-logo.png" alt="Dart" width="48" height="48" /></span>
-              <span class="techIcon techBle" role="img" aria-label="Bluetooth Low Energy" title="Bluetooth Low Energy">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.71 7.71L12 2h-1v7.59L6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 11 14.41V22h1l5.71-5.71-4.3-4.29 4.3-4.29zM13 5.83l1.88 1.88L13 9.59V5.83zm1.88 10.46L13 18.17v-3.76l1.88 1.88z"/></svg>
-              </span>
-            </div>
           </header>
           <p class="projectBlurb">
-            Gets a Misty II onto your Wi-Fi over Bluetooth. Find the robot, send it your network credentials, and get back the IP it was assigned.
+            Gets a Misty II onto your Wi&#8209;Fi over Bluetooth. Find the robot, send it your network credentials, and get back the IP it was assigned.
           </p>
-          <p class="projectNote">
-            The official replacement for the removed Misty App, so owners of Misty II (built by Misty Robotics in Boulder, Colorado) can get their robots online for research, teaching or private use.
-          </p>
-          <details class="expand">
-            <summary class="expandToggle">
-              <span class="expandText" data-closed="technical details +" data-open="hide −" aria-hidden="true"></span>
-              <span class="srOnly">Toggle technical details</span>
-            </summary>
-            <ul class="expandBody">
-              <li>BLE discovery of nearby Misty II robots.</li>
-              <li>Custom GATT service to exchange Wi-Fi credentials and read back the assigned IP.</li>
-              <li>Pure-Dart protocol layer, fully unit-tested.</li>
-              <li>Local cache of seen robots for one-tap reconnects.</li>
-            </ul>
-          </details>
           <!-- Official store badges, unmodified, per Apple's and Google's guidelines. -->
           <div class="badges">
             <a href="https://apps.apple.com/us/app/misty-connect/id6771731417" target="_blank" rel="noopener" class="badge">
@@ -97,109 +104,66 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
               <img src="/badge-google-play.png" alt="Get it on Google Play" width="154" height="60" />
             </a>
           </div>
-        </article>
-
-        <article class="project">
-          <header class="projectHead">
-            <h3 class="projectTitle">Furhatling</h3>
-            <div class="projectMeta">
-              <span class="metaLabel">Petdex</span>
-              <span class="techIcon" title="Codex"><img src="/codex-logo.png" alt="Codex CLI" width="40" height="40" /></span>
-              <span class="techIcon techClaude" role="img" aria-label="Claude" title="Claude">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.709 15.955l4.72-2.647.08-.23-.08-.128H9.2l-.79-.048-2.698-.073-2.339-.097-2.266-.122-.571-.121L0 11.784l.055-.352.48-.321.686.06 1.52.103 2.278.158 1.652.097 2.449.255h.389l.055-.157-.134-.098-.103-.097-2.358-1.596-2.552-1.688-1.336-.972-.722-.491-.365-.462-.158-1.008.656-.722.881.06.225.061.893.686 1.908 1.476 2.491 1.833.365.304.146-.103.018-.073-.164-.274-1.355-2.448-1.446-2.49-.644-1.032-.17-.619a2.97 2.97 0 0 1-.104-.729L6.283.134 6.696 0l.996.134.42.364.62 1.414 1.002 2.229 1.555 3.03.456.898.243.832.091.255h.158V9.01l.128-1.706.237-2.095.23-2.695.08-.76.376-.91.747-.492.584.28.48.685-.067.444-.286 1.851-.559 2.903-.364 1.942h.212l.243-.242.985-1.306 1.652-2.064.73-.82.85-.904.547-.431h1.033l.76 1.129-.34 1.166-1.064 1.347-.881 1.142-1.263 1.7-.79 1.36.073.11.188-.02 2.856-.606 1.543-.28 1.841-.315.833.388.091.395-.328.807-1.969.486-2.309.462-3.439.813-.042.03.049.061 1.549.146.662.036h1.622l3.02.225.79.522.474.638-.079.485-1.215.62-1.64-.389-3.829-.91-1.312-.329h-.182v.11l1.093 1.068 2.006 1.81 2.509 2.33.127.578-.322.455-.34-.049-2.205-1.659-.851-.747-1.927-1.622h-.128v.17l.444.649 2.345 3.521.122 1.08-.17.353-.608.213-.668-.122-1.374-1.925-1.415-2.167-1.143-1.943-.14.08-.674 7.254-.316.37-.729.28-.607-.461-.322-.747.322-1.476.389-1.924.315-1.53.286-1.9.17-.632-.011-.042-.14.018-1.434 1.967-2.18 2.945-1.726 1.845-.414.164-.717-.37.067-.662.401-.589 2.388-3.036 1.44-1.882.93-1.086-.006-.158h-.055L4.132 18.56l-1.13.146-.487-.456.061-.746.231-.243 1.908-1.312z"/></svg>
+          <!-- The details open as a popover: a native browser feature that
+               puts the sheet in a layer above the page, closes it on Escape
+               or a click outside, and tells screen readers whether it is
+               open, all without script. Because it floats, opening it moves
+               nothing else on the page. -->
+          <button type="button" class="expandToggle glass" popovertarget="details">
+            <span>details</span>
+            <span class="plus" aria-hidden="true"></span>
+          </button>
+          <div id="details" class="sheet glass" popover>
+            <p class="projectNote">
+              The official replacement for the removed Misty App, so owners of Misty II (built by Misty Robotics in Boulder, Colorado) can get their robots online for research, teaching or private use.
+            </p>
+            <ul class="facts">
+              {details.map(([key, text]) => (
+                <li class="fact">
+                  <span class="factKey">{key}</span>
+                  {text}
+                </li>
+              ))}
+            </ul>
+            <div class="stack">
+              <span class="techIcon techFlutter" role="img" aria-label="Flutter" title="Flutter">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.37zm.014 11.072L7.857 17.53l6.471 6.47H21.7l-6.46-6.468 6.46-6.46z"/></svg>
+              </span>
+              <span class="techIcon" title="Dart"><img src="/dart-logo.png" alt="Dart" width="48" height="48" /></span>
+              <span class="techIcon techBle" role="img" aria-label="Bluetooth Low Energy" title="Bluetooth Low Energy">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.71 7.71L12 2h-1v7.59L6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 11 14.41V22h1l5.71-5.71-4.3-4.29 4.3-4.29zM13 5.83l1.88 1.88L13 9.59V5.83zm1.88 10.46L13 18.17v-3.76l1.88 1.88z"/></svg>
               </span>
             </div>
-          </header>
-          <p class="projectBlurb">
-            A desktop companion pet for Petdex, inspired by the Furhat social robot. It reacts to what your local Codex and Claude Code sessions are doing.
-          </p>
-          <div class="previewBody">
-            <figure class="previewItem">
-              <img src="/furhatling-idle.gif" alt="Furhatling idle animation" class="previewGif" width="192" height="208" loading="lazy" />
-              <figcaption class="previewLabel">idle</figcaption>
-            </figure>
-            <figure class="previewItem">
-              <img src="/furhatling-running.gif" alt="Furhatling running animation" class="previewGif" width="192" height="208" loading="lazy" />
-              <figcaption class="previewLabel">running</figcaption>
-            </figure>
-            <figure class="previewItem">
-              <img src="/furhatling-waiting.gif" alt="Furhatling waiting animation" class="previewGif" width="192" height="208" loading="lazy" />
-              <figcaption class="previewLabel">waiting</figcaption>
-            </figure>
-            <figure class="previewItem">
-              <img src="/furhatling-review.gif" alt="Furhatling review animation" class="previewGif" width="192" height="208" loading="lazy" />
-              <figcaption class="previewLabel">review</figcaption>
-            </figure>
-            <figure class="previewItem">
-              <img src="/furhatling-failed.gif" alt="Furhatling failed animation" class="previewGif" width="192" height="208" loading="lazy" />
-              <figcaption class="previewLabel">failed</figcaption>
-            </figure>
           </div>
-          <p class="links">
-            <a href="https://github.com/Leoxd19/furhatling-petdex" target="_blank" rel="noopener">Source<span aria-hidden="true">&nbsp;↗</span></a>
-            <span class="sep" aria-hidden="true">·</span>
-            <a href="https://petdex.dev/" target="_blank" rel="noopener">petdex.dev<span aria-hidden="true">&nbsp;↗</span></a>
-          </p>
-        </article>
-        <article class="project">
-          <header class="projectHead">
-            <h3 class="projectTitle">Sudda mig</h3>
-            <!-- Sudd, the suddamig.se mascot (vector from that site, light theme colors) -->
-            <svg class="sudd" viewBox="0 0 140 110" role="img" aria-label="Sudd, the Sudda mig eraser mascot">
-              <g transform="rotate(-10 70 52)">
-                <rect x="14" y="22" width="112" height="62" rx="14" fill="#ffffff" stroke="#0b1220" stroke-width="5"/>
-                <path d="M28 22H62V84H28Q14 84 14 70V36Q14 22 28 22Z" fill="#2541e8" stroke="#0b1220" stroke-width="5" stroke-linejoin="round"/>
-                <line x1="62" y1="30" x2="62" y2="76" stroke="#0b1220" stroke-width="5"/>
-                <circle cx="84" cy="48" r="5.5" fill="#0b1220"/>
-                <circle cx="106" cy="48" r="5.5" fill="#0b1220"/>
-                <path d="M83 62Q95 71 107 62" fill="none" stroke="#0b1220" stroke-width="5" stroke-linecap="round"/>
-              </g>
-              <rect x="10" y="96" width="9" height="9" rx="2" fill="#2541e8" stroke="#0b1220" stroke-width="2.5"/>
-              <rect x="27" y="100" width="7" height="7" rx="2" fill="#ffffff" stroke="#0b1220" stroke-width="2.5"/>
-              <rect x="41" y="96" width="6" height="6" rx="2" fill="#2541e8" stroke="#0b1220" stroke-width="2.5"/>
-            </svg>
-          </header>
-          <p class="projectBlurb">
-            A free step-by-step guide to removing yourself from Swedish people-search sites like Ratsit, Hitta, MrKoll and Merinfo. No login, no tracking, no cookies.
-          </p>
-          <details class="expand">
-            <summary class="expandToggle">
-              <span class="expandText" data-closed="details +" data-open="hide −" aria-hidden="true"></span>
-              <span class="srOnly">Toggle details</span>
-            </summary>
-            <ul class="expandBody">
-              <li>Covers Ratsit, Hitta, MrKoll, Merinfo, Eniro, Birthday and more.</li>
-              <li>Progress is saved only in your own browser.</li>
-              <li>Counts total page views, nothing about the visitor.</li>
-            </ul>
-          </details>
-          <p class="links">
-            <a href="https://suddamig.se" target="_blank" rel="noopener">suddamig.se<span aria-hidden="true">&nbsp;↗</span></a>
-            <span class="sep" aria-hidden="true">·</span>
-            <a href="https://github.com/Leoxd19/suddamig" target="_blank" rel="noopener">Source<span aria-hidden="true">&nbsp;↗</span></a>
-          </p>
         </article>
       </section>
 
     </main>
+
+    <!-- Avatar and peon icons are fan-made (Hive Workshop, artists named at
+         the top of this file and beside the peon); the frostsaber is Blizzard's. -->
+    <footer class="colophon">
+      Icons from <a href="https://www.hiveworkshop.com" target="_blank" rel="noopener">Hive Workshop</a> artists and Blizzard
+    </footer>
   </div>
 </BaseLayout>
 
 <script>
-  // Avatar cycle through the Warcraft III icons listed in data-srcs, as a
+  // The portrait fades through the icons listed in data-srcs, as a
   // crossfade between two stacked layers: the next icon fades in on top of
-  // the current one, so there is never an empty frame (fading out to
-  // nothing and back read as a blink). Each image is decoded before its
-  // fade starts so it can't pop in mid-transition. Pauses while the tab is
-  // hidden; with prefers-reduced-motion there's no autoplay, and a hover or
-  // tap steps to the next icon instead. Taps also step it on touch screens.
-  const frame = document.getElementById("avatar");
-  const layers = frame ? Array.from(frame.querySelectorAll<HTMLImageElement>(".avatarLayer")) : [];
-  if (frame && layers.length === 2) {
-    const sources = (frame.dataset.srcs ?? "").split(",").filter(Boolean);
+  // the current one, so there is never an empty frame. Each image is
+  // decoded before its fade starts so it can't pop in mid-transition. It
+  // pauses while the tab is hidden; with prefers-reduced-motion it doesn't
+  // play on its own, and only a click or tap moves it on.
+  const portrait = document.getElementById("portrait");
+  const layers = portrait
+    ? Array.from(portrait.querySelectorAll<HTMLImageElement>(".portraitLayer"))
+    : [];
+  if (portrait && layers.length === 2) {
+    const sources = (portrait.dataset.srcs ?? "").split(",").filter(Boolean);
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const HOLD_MS = 3500;
-    const FADE_MS = 900; // keep in sync with .avatarLayer's transition
+    const HOLD_MS = 4000;
+    const FADE_MS = 900; // keep in sync with .portraitLayer's transition
     let i = 0;
     let top = 0;
     let busy = false;
@@ -212,7 +176,7 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
     });
 
     const next = async () => {
-      if (busy) return;
+      if (busy || sources.length < 2) return;
       busy = true;
       i = (i + 1) % sources.length;
       const incoming = layers[1 - top];
@@ -235,29 +199,49 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
     };
 
     const play = () => {
-      if (timer === undefined) timer = window.setInterval(next, HOLD_MS);
+      if (!reduceMotion && timer === undefined) timer = window.setInterval(next, HOLD_MS);
     };
 
     const pause = () => {
-      if (timer !== undefined) {
-        clearInterval(timer);
-        timer = undefined;
-      }
+      clearInterval(timer);
+      timer = undefined;
     };
 
-    if (reduceMotion) {
-      frame.addEventListener("mouseenter", next);
-    } else {
-      play();
-      document.addEventListener("visibilitychange", () => {
-        if (document.hidden) pause();
-        else play();
-      });
-    }
+    play();
+    document.addEventListener("visibilitychange", () => (document.hidden ? pause() : play()));
 
-    // Touch: a tap steps to the next icon.
-    frame.addEventListener("touchstart", next, { passive: true });
+    // A click moves on at once and restarts the wait for the next one.
+    portrait.addEventListener("click", () => {
+      pause();
+      next();
+      play();
+    });
   }
+
+  // Glass surfaces catch the light from the pointer: each one is told where
+  // the cursor is relative to its own corner, and its CSS paints a soft
+  // highlight there. Only custom properties change, so nothing is laid out
+  // again, and the work is batched to one update per frame.
+  const glass = Array.from(document.querySelectorAll<HTMLElement>(".glass"));
+  let pointer: PointerEvent | undefined;
+  window.addEventListener(
+    "pointermove",
+    (event) => {
+      if (!pointer) {
+        requestAnimationFrame(() => {
+          if (!pointer) return;
+          for (const el of glass) {
+            const box = el.getBoundingClientRect();
+            el.style.setProperty("--mx", `${pointer.clientX - box.left}px`);
+            el.style.setProperty("--my", `${pointer.clientY - box.top}px`);
+          }
+          pointer = undefined;
+        });
+      }
+      pointer = event;
+    },
+    { passive: true },
+  );
 </script>
 
 <style>
@@ -271,19 +255,20 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
     --plate-h: clamp(18rem, 60dvh, 44rem);
     --plate-w: calc(var(--plate-h) * 0.66125);
     display: grid;
-    grid-template-columns: var(--plate-w) minmax(0, 46rem);
+    grid-template-columns: var(--plate-w) minmax(0, 36rem);
     justify-content: center;
     align-items: center;
     column-gap: clamp(3rem, 6vw, 7rem);
+    position: relative;
     min-height: 100vh;
     min-height: 100dvh;
     padding-inline: clamp(1.5rem, 4vw, 4rem);
   }
 
-  /* The credit hangs below the print without counting toward its box, so
-     the image itself, not image + caption, is what gets centred. */
+  /* The credit is positioned against this box, on top of the print. */
   .plate {
     position: relative;
+    animation: fade 0.9s ease both;
   }
 
   /* <Picture> renders its own elements, outside this component's style
@@ -305,111 +290,146 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
   /* Fits one screen on desktop: the whole column sits within the viewport
      height, vertically centred against the print. */
   .content {
-    --band-w: 22rem;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+    /* Overshoots its target a little before settling, like a spring. */
+    --spring: cubic-bezier(0.3, 1.6, 0.5, 1);
+    /* The weight of the plus sign's two bars. */
+    --line: 2.5px;
     display: flex;
     flex-direction: column;
-    gap: clamp(1.25rem, 3vh, 3rem);
     padding-block: clamp(0.75rem, 2.5vh, 2rem);
+    text-align: center;
+  }
+
+  /* The column arrives in order, top to bottom: each block rises a few
+     pixels into place, slightly after the one above it. */
+  .content > * {
+    animation: rise 0.8s var(--ease) both;
+  }
+
+  .content > :nth-child(2) { animation-delay: 0.12s; }
+
+  /* Rising out of a slight blur makes each block seem to come into focus
+     rather than just slide. */
+  @keyframes rise {
+    from {
+      opacity: 0;
+      filter: blur(6px);
+      transform: translateY(10px);
+    }
+  }
+
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
   }
 
   /* --- Intro ----------------------------------------------------- */
 
+  /* Everything in the column is set on its centre line, like a title
+     page: the print is one centred object, the text beside it another. */
   .intro {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 0.35rem;
   }
 
-  /* Circular profile avatar: Warcraft III hero icons (Hive Workshop),
-     duotoned in the page's ink and paper so they read like the etching.
-     Starts on Carrion Swarm (bats) and cycles through the set on its own. */
-  .avatar {
+  /* --- Portrait --------------------------------------------------- */
+
+  /* A glass tile with the icon set into it. The padding is the frosted
+     margin around the icon; the two radii differ by exactly that padding,
+     which keeps the inner and outer corners concentric. */
+  .portrait {
+    --size: 56px;
+    --pad: 5px;
     position: relative;
-    display: block;
-    flex-shrink: 0;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    overflow: hidden;
+    width: calc(var(--size) + 2 * var(--pad));
+    height: calc(var(--size) + 2 * var(--pad));
+    margin-bottom: clamp(0.9rem, 2.4vh, 1.4rem);
+    padding: 0;
+    border: 0;
+    border-radius: 19px;
     cursor: pointer;
-    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.45s var(--spring);
   }
 
-  .avatar:hover {
-    transform: scale(1.08);
+  .portrait:hover {
+    transform: scale(1.06);
+  }
+
+  .portrait:active {
+    transform: scale(0.96);
   }
 
   /* Two stacked layers for the crossfade; only .isTop is visible. */
-  .avatarLayer {
+  .portraitLayer {
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    inset: var(--pad);
+    width: var(--size);
+    height: var(--size);
+    border-radius: 14px;
     opacity: 0;
     transition: opacity 0.9s ease-in-out;
   }
 
-  .avatarLayer.isTop {
+  .portraitLayer.isTop {
     opacity: 1;
   }
 
-  /* Personal "emoji" after the avatar: same circle and duotone, so they
-     read as one set, but they stay still while the avatar cycles. */
+  /* The name keeps the exact centre; the trait icons hang off its right
+     edge without being counted in its width. */
+  .nameLine {
+    position: relative;
+  }
+
+  /* Large, tight and heavy enough to carry the page without a band
+     behind it. */
+  .name {
+    font-size: clamp(2rem, 1.55rem + 1.5vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+  }
+
+  /* Personal "emoji" after the name: the same rounded-square shape as the
+     portrait, so they read as one set. */
   .traits {
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 0.7rem);
     display: flex;
     gap: 0.35rem;
+    transform: translateY(-50%);
   }
 
+  /* A small glass tile, the portrait's little sibling. max-width: none
+     because the row is positioned outside the name's box and has no width
+     of its own for the global max-width: 100% to measure against. */
   .trait {
     display: block;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
+    flex-shrink: 0;
+    width: 32px;
+    max-width: none;
+    height: 32px;
+    padding: 3px;
+    border-radius: 10px;
   }
 
-  /* Heading bands: the name row and each project title sit on the same tab
-     of a deeper paper tone. On desktop every tab has one shared width
-     (sized to the longest title row), so they line up as a set without
-     running the full column; phones get full-width bands. Each band hangs
-     into the gutter so its text still aligns with the text below. */
-  .nameRow,
-  .projectHead {
-    width: max-content;
-    min-width: var(--band-w);
-    max-width: calc(100% + 1.2rem);
-    margin-inline: -0.6rem;
-    padding: 0.2rem 0.6rem;
-    background: var(--band);
-    border-radius: var(--radius);
-  }
-
-  /* Name then avatar on one band, in the same order and spacing as the
-     project rows (title, then icon), so all four bands read alike. Only
-     its colours differ (inverted), marking it as the page's title. */
-  .nameRow {
-    display: flex;
-    align-items: center;
-    gap: 0.9rem;
-    background: var(--band-name);
-    color: var(--paper);
-  }
-
-  /* Deliberately quiet: position and the avatar already mark this as the
-     page's title, so size and weight don't have to shout. */
-  .name {
-    font-size: clamp(1.5rem, 1.3rem + 0.6vw, 1.75rem);
-    font-weight: 500;
-    line-height: 1.2;
-    letter-spacing: -0.015em;
+  .trait img {
+    width: 100%;
+    height: 100%;
+    border-radius: 7px;
   }
 
   .tagline {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
     gap: 0.2rem 0.45rem;
+    line-height: 1.4;
     color: var(--ink);
   }
 
@@ -417,17 +437,18 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
      icon keeps its green on purpose: in duotone he stops reading as a peon. */
   .quote {
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 0.5rem;
-    margin-top: 0.15rem;
+    gap: 0.55rem;
+    margin-top: clamp(0.4rem, 1.2vh, 0.8rem);
     font-size: 0.875rem;
     line-height: 1.4;
   }
 
   .quoteIcon {
-    width: 24px;
-    height: 24px;
-    border-radius: var(--radius-sm);
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
     flex-shrink: 0;
   }
 
@@ -474,53 +495,48 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
     mask: url("/furhat-logo-mask.png") center / contain no-repeat;
   }
 
-  /* --- Projects -------------------------------------------------- */
+  /* --- Project --------------------------------------------------- */
 
-  /* No cards or rules: the title bands mark each project, so the gap
-     between projects can stay modest. */
+  /* No card, label or rule: whitespace alone separates the app from the
+     intro. */
   .projects {
     display: flex;
     flex-direction: column;
-    gap: clamp(0.9rem, 1.7vh, 2rem);
+    align-items: center;
+    margin-top: clamp(2.25rem, 7vh, 4rem);
+  }
+
+  /* Machine details (the toggle, the fact keywords) are set in mono: one
+     "label" voice under the sans reading voice. */
+  .factKey,
+  .expandToggle {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--ink);
   }
 
   .project {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 0.35rem;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
   }
 
-  /* Title and stack on one line: the project's identity row. */
   .projectHead {
     display: flex;
+    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 0.35rem 0.9rem;
+    gap: 0.8rem;
   }
 
   .projectTitle {
-    font-size: 1.3rem;
-    line-height: 1.25;
-    letter-spacing: -0.015em;
-  }
-
-  /* Machine details (toggles, labels) are set in mono, small and muted:
-     one consistent "label" voice under the sans reading voice. */
-  .expandToggle,
-  .previewLabel,
-  .metaLabel {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    color: var(--ink-muted);
-  }
-
-  .projectMeta {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
+    font-size: 1.55rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
   }
 
   .techIcon {
@@ -529,13 +545,13 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
   }
 
   .techIcon svg {
-    width: 17px;
-    height: 17px;
+    width: 15px;
+    height: 15px;
   }
 
   .techIcon img {
-    width: 19px;
-    height: 19px;
+    width: 17px;
+    height: 17px;
     object-fit: contain;
   }
 
@@ -543,80 +559,52 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
      enough) to clear 3:1 against the paper. Raster logos keep their art. */
   .techFlutter { color: #02569b; }
   .techBle     { color: #0a5bc4; }
-  .techClaude  { color: #a94e2f; }
 
   /* App icon artwork is square; the store applies the rounded mask, so we
      round it the same way (~22% radius, like iOS) to read as an app icon. */
   .appIcon {
-    width: 28px;
-    height: 28px;
+    width: 36px;
+    height: 36px;
     border-radius: 22%;
   }
 
-  .sudd {
-    width: 34px;
-    height: auto;
-    overflow: visible;
-  }
-
-  /* Descriptions use the full column width (~70–80 characters on desktop)
-     with plain greedy wrapping: no ch cap and no text-wrap: pretty, both of
-     which broke lines early and left short, ragged lines. */
+  /* Balanced wrapping evens out the line lengths, which centred text
+     needs: one short last line under two long ones looks lopsided. */
   .projectBlurb {
-    max-width: none;
+    max-width: 31rem;
+    line-height: 1.55;
+    text-wrap: balance;
   }
 
-  /* Background context, quieter than the description it follows. */
+  /* Background context, on the details sheet. */
   .projectNote {
     font-size: 0.875rem;
     line-height: 1.5;
-    color: var(--ink-muted);
-  }
-
-  /* --- Links ------------------------------------------------------ */
-
-  .links {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0.25rem 0.6rem;
-    margin-top: 0.15rem;
-  }
-
-  .links a {
     color: var(--ink);
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-decoration-color: var(--rule);
-    text-underline-offset: 0.25em;
-    transition: text-decoration-color 0.15s ease;
+    text-wrap: balance;
   }
 
-  .links a:hover {
-    text-decoration-color: currentColor;
-  }
-
-  .sep {
-    color: var(--rule);
-  }
+  /* --- Store badges ----------------------------------------------- */
 
   .badges {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
     gap: 0.75rem;
-    margin-top: 0.3rem;
+    margin-top: 0.5rem;
   }
 
   .badge {
     display: block;
     line-height: 0;
     border-radius: 7px;
-    transition: opacity 0.15s ease;
+    transition: opacity 0.15s ease, transform 0.3s var(--ease);
   }
 
   .badge:hover {
     opacity: 0.85;
+    transform: translateY(-1px);
   }
 
   .badge img {
@@ -635,152 +623,263 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
     margin: -9.75px;
   }
 
-  /* --- Expand panels -------------------------------------------- */
+  /* --- Details ---------------------------------------------------- */
 
-  .expand {
-    width: 100%;
-  }
-
+  /* The toggle is a small glass capsule: a label and a plus that turns
+     into a minus. It gives slightly under the finger. "anchor-name" lets
+     the sheet position itself against this button (see .sheet). */
   .expandToggle {
-    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+    padding: 0.45rem 0.95rem;
+    border: 0;
+    border-radius: 999px;
+    letter-spacing: 0.04em;
     cursor: pointer;
     user-select: none;
-    display: inline-block;
-    padding-block: 0.2rem;
-    transition: color 0.15s ease;
-  }
-
-  .expandToggle::-webkit-details-marker {
-    display: none;
+    anchor-name: --details-toggle;
+    transition: transform 0.3s var(--ease);
   }
 
   .expandToggle:hover {
-    color: var(--ink);
+    transform: scale(1.04);
   }
 
-  .expandText::before {
-    content: attr(data-closed);
+  .expandToggle:active {
+    transform: scale(0.96);
   }
 
-  .expand[open] .expandText::before {
-    content: attr(data-open);
-  }
-
-  /* Opened details read in a bright-but-dark blue (4.9:1 on the paper),
-     setting them apart from the always-visible ink text. */
-  .expandBody {
-    color: var(--blue);
-    margin: 0.6rem 0 0.25rem;
-    padding: 0 0 0 1rem;
-    border-left: 1px solid var(--rule);
-    list-style: none;
-  }
-
-  .expandBody li + li {
-    margin-top: 0.35rem;
-  }
-
-  /* Furhatling preview row — always visible, five state gifs, labeled. */
-  /* The animations sit in a "puddle": each robot gets a soft oval pool,
-     wide enough that neighbours overlap, so the five merge into one
-     shape that swells around each robot and narrows between them. It is
-     darker than the paper because the robots are white and cream; a light
-     backdrop left their heads with nothing to stand out against. The pool
-     scales with --gif-h, which each breakpoint sets. */
-  .previewBody {
-    --gif-h: 58px;
-    display: flex;
-    gap: 0.5rem;
-    width: var(--band-w);
-    max-width: 100%;
-    margin: 0.5rem 0 0.2rem;
-  }
-
-  .previewItem {
+  /* Two bars crossed. While the sheet is open the upright one turns flat
+     onto the other, and the whole sign makes a half turn on the way. The
+     button can tell because the sheet is its next sibling: :has() looks
+     ahead for it in the open state. */
+  .plus {
     position: relative;
+    width: 11px;
+    height: 11px;
+    transition: transform 0.5s var(--ease);
+  }
+
+  .plus::before,
+  .plus::after {
+    content: "";
+    position: absolute;
+    top: calc(50% - var(--line) / 2);
+    left: 0;
+    width: 100%;
+    height: var(--line);
+    border-radius: 99px;
+    background: currentColor;
+    transition: transform 0.5s var(--ease);
+  }
+
+  .plus::after {
+    transform: rotate(90deg);
+  }
+
+  .expandToggle:has(+ .sheet:popover-open) .plus {
+    transform: rotate(180deg);
+  }
+
+  .expandToggle:has(+ .sheet:popover-open) .plus::after {
+    transform: rotate(0deg);
+  }
+
+  /* The sheet: a pane of glass floating over the page with the background
+     note, four facts and what the app is built with. It is more opaque
+     and blurs harder than the other glass, because here there is text
+     behind it that must not compete with the text on it.
+
+     Closed, a popover is display: none, which normally can't be animated.
+     Three newer pieces of CSS make it possible:
+     - "allow-discrete" on display and overlay keeps the sheet rendered,
+       and in the top layer, until its fade-out has finished;
+     - @starting-style gives the values to animate from on the first
+       frame after it appears;
+     - the closed values on .sheet itself are what it animates back to. */
+  .sheet {
+    --glass-blur: 26px;
+    /* Frosted at the top, where the name shows through, and solid from the
+       middle down, so the black store badges behind the lower half don't
+       show as a dark smudge. The first layer is the pointer highlight. */
+    --sheet: color-mix(in srgb, var(--paper), white 45%);
+    background:
+      radial-gradient(9rem circle at var(--mx, -99rem) var(--my, -99rem), rgb(255 255 255 / 0.4), transparent 70%),
+      linear-gradient(color-mix(in srgb, var(--sheet) 72%, transparent), var(--sheet) 55%);
+    width: min(31rem, calc(100vw - 2rem));
+    max-height: calc(100dvh - 2rem);
+    margin: auto;
+    padding: 1.6rem 1.5rem 1.4rem;
+    overflow: auto;
+    border: 0;
+    border-radius: 22px;
+    color: var(--ink);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+    transition:
+      opacity 0.25s ease,
+      transform 0.45s var(--spring),
+      overlay 0.45s allow-discrete,
+      display 0.45s allow-discrete;
+  }
+
+  .sheet:popover-open {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.35rem;
-    flex: 1 1 0;
-    min-width: 0;
+    gap: 1.3rem;
+    opacity: 1;
+    transform: none;
   }
 
-  .previewItem::before {
-    content: "";
-    position: absolute;
-    top: calc(var(--gif-h) * -0.1);
-    left: -36%;
-    right: -36%;
-    height: calc(var(--gif-h) * 1.2);
-    background: radial-gradient(
-      closest-side,
-      var(--puddle) 58%,
-      color-mix(in srgb, var(--puddle) 45%, transparent) 80%,
-      transparent 100%
-    );
+  @starting-style {
+    .sheet:popover-open {
+      opacity: 0;
+      transform: translateY(10px) scale(0.96);
+    }
   }
 
-  /* The outer pools reach half as far, keeping the puddle inside the
-     page margin (on phones the full reach ran past the screen edge). */
-  .previewItem:first-child::before {
-    left: -18%;
+  /* Where the browser supports anchor positioning, the sheet opens just
+     above the button that called it and centred on it, covering the text
+     it elaborates on; if there is no room above, it flips below. Without
+     support it keeps the popover default: centred in the window. */
+  @supports (position-area: top) {
+    .sheet {
+      position-anchor: --details-toggle;
+      position-area: top;
+      position-try-fallbacks: flip-block;
+      margin: 0.75rem 0;
+      max-height: none;
+      transform-origin: 50% 100%;
+    }
   }
 
-  .previewItem:last-child::before {
-    right: -18%;
+  /* The page behind dims slightly while the sheet is open. */
+  .sheet::backdrop {
+    background: rgb(23 19 15 / 0);
+    transition:
+      background-color 0.4s ease,
+      overlay 0.4s allow-discrete,
+      display 0.4s allow-discrete;
   }
 
-  .previewGif,
-  .previewLabel {
-    position: relative;
+  .sheet:popover-open::backdrop {
+    background: rgb(23 19 15 / 0.08);
   }
 
-  .previewLabel {
-    font-size: 0.6875rem;
+  @starting-style {
+    .sheet:popover-open::backdrop {
+      background: rgb(23 19 15 / 0);
+    }
+  }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.1rem 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .fact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    text-wrap: balance;
+  }
+
+  .factKey {
     color: var(--blue);
+    text-transform: uppercase;
   }
 
-  .previewGif {
-    height: var(--gif-h);
-    width: auto;
-    max-width: 100%;
-    /* Source frames are 192×208; keep the ratio when max-width kicks in. */
-    aspect-ratio: 192 / 208;
-    /* Force high-quality downsampling — Firefox on Windows otherwise uses
-       a cheaper filter for animated GIFs that pixelates the character. */
-    image-rendering: auto;
-    image-rendering: high-quality;
+  /* Each fact comes into focus just after the one before it. A keyframe
+     animation restarts whenever an element goes from not rendered to
+     rendered, so this replays every time the sheet opens. */
+  .sheet:popover-open .fact {
+    animation: rise 0.6s var(--ease) both;
+  }
+
+  .sheet:popover-open .fact:nth-child(1) { animation-delay: 0.1s; }
+  .sheet:popover-open .fact:nth-child(2) { animation-delay: 0.16s; }
+  .sheet:popover-open .fact:nth-child(3) { animation-delay: 0.22s; }
+  .sheet:popover-open .fact:nth-child(4) { animation-delay: 0.28s; }
+
+  .stack {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
   }
 
   /* --- Credit ----------------------------------------------------- */
 
-  /* Wall label under the print: same width, small, muted. */
+  /* The wall label, as a glass chip resting on the foot of the print.
+     Glass needs something behind it to be glass, and the etching is the
+     richest surface on the page: its lines show through, blurred. */
   .credit {
+    --glass-fill: 0.5;
     position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    padding-top: 0.5rem;
+    bottom: 0.75rem;
+    left: 50%;
+    width: max-content;
+    max-width: calc(100% - 1.5rem);
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
     font-size: 0.6875rem;
     line-height: 1.4;
-    color: var(--ink-muted);
+    white-space: nowrap;
+    color: var(--ink);
+    transform: translateX(-50%);
   }
 
   .credit cite {
     font-style: normal;
   }
 
+  /* --- Colophon --------------------------------------------------- */
+
+  /* One quiet line of credit at the foot of the page. On desktop it is
+     pinned to the bottom edge so it stays out of the centred composition. */
+  .colophon {
+    position: absolute;
+    right: 0;
+    bottom: 1rem;
+    left: 0;
+    font-size: 0.6875rem;
+    line-height: 1.4;
+    text-align: center;
+    color: var(--ink-muted);
+    animation: fade 0.9s ease 0.6s both;
+  }
+
+  .colophon a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  .colophon a:hover {
+    color: var(--ink);
+  }
+
   /* --- Focus & utilities ----------------------------------------- */
 
-  /* Keyboard-only focus rings — invisible to mouse users. */
+  /* Keyboard-only focus rings — invisible to mouse users. The outline
+     follows each element's own corner shape. */
   .expandToggle:focus-visible,
   .badge:focus-visible,
-  .links a:focus-visible,
-  .logoLink:focus-visible {
+  .logoLink:focus-visible,
+  .colophon a:focus-visible {
     outline: 2px solid var(--ink);
     outline-offset: 3px;
-    border-radius: 2px;
   }
 
   .srOnly {
@@ -799,51 +898,28 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
      rhythm so the column still fits in one screen. */
   @media (min-width: 768px) and (min-aspect-ratio: 1/1) and (max-height: 800px) {
     .content {
-      gap: 0.5rem;
       padding-block: 0;
     }
 
+    .portrait {
+      --size: 48px;
+      margin-bottom: 0.7rem;
+    }
+
+    /* The print is narrower here; keep its label on one line. */
+    .credit {
+      max-width: calc(100% - 0.75rem);
+      padding-inline: 0.6rem;
+      font-size: 0.625rem;
+    }
+
     .intro {
-      gap: 0.15rem;
-    }
-
-    .nameRow,
-    .projectHead {
-      padding-block: 0.1rem;
-    }
-
-    .previewBody {
-      --gif-h: 36px;
-      margin-top: 0.3rem;
-    }
-
-    .avatar,
-    .trait {
-      width: 26px;
-      height: 26px;
-    }
-
-    .quote {
-      font-size: 0.8125rem;
-    }
-
-    .quoteIcon {
-      width: 20px;
-      height: 20px;
-    }
-
-    .projects {
-      gap: 0.5rem;
-    }
-
-    .project {
       gap: 0.2rem;
     }
 
-    .projectBlurb {
-      line-height: 1.55;
+    .projects {
+      margin-top: 1.75rem;
     }
-
   }
 
   /* --- Stacked layout: phones and portrait screens ---------------- */
@@ -882,25 +958,28 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
       border-radius: 2px;
     }
 
-    .credit {
-      position: static;
-      text-align: center;
-    }
-
-    /* Phones: bands and the animation panel run the full column. */
-    .nameRow,
-    .projectHead {
-      width: calc(100% + 1.2rem);
-      min-width: 0;
-    }
-
-    .previewBody {
-      width: 100%;
-    }
-
     .content {
-      gap: 2.5rem;
-      padding-block: 2rem 3rem;
+      padding-block: 2.5rem 3rem;
+    }
+
+    /* Stacked, the page scrolls, so the credit simply ends it. */
+    .colophon {
+      position: static;
+      padding-bottom: 1.25rem;
+    }
+
+    /* On a phone the app section starts below the fold, so instead of
+       playing on load it is tied to the scroll position: it comes into
+       focus as it enters the screen and runs backwards if you scroll back
+       up. Browsers without scroll-driven animations keep the load one. */
+    @supports (animation-timeline: view()) {
+      @media (prefers-reduced-motion: no-preference) {
+        .projects {
+          animation: rise linear both;
+          animation-timeline: view();
+          animation-range: entry 0% entry 45%;
+        }
+      }
     }
   }
 
@@ -914,9 +993,12 @@ import goya from "../assets/goya-sleep-of-reason.jpg";
       margin-left: -0.25rem;
     }
 
-    .previewBody {
-      --gif-h: 52px;
-      gap: 0.4rem;
+    .fact {
+      font-size: 0.8125rem;
+    }
+
+    .sheet {
+      padding-inline: 1rem;
     }
   }
 </style>
